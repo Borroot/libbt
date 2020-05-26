@@ -15,6 +15,18 @@ Test(ctype, isalpha)
 	cr_assert(!x_isalpha('\0'));
 }
 
+Test(ctype, isascii)
+{
+	cr_assert(x_isascii('\0'));
+	cr_assert(x_isascii('0'));
+	cr_assert(x_isascii('a'));
+	cr_assert(x_isascii('A'));
+	cr_assert(x_isascii('!'));
+	cr_assert(x_isascii('@'));
+	cr_assert(x_isascii(0));
+	cr_assert(x_isascii(127));
+}
+
 Test(ctype, isdigit)
 {
 	cr_assert(x_isdigit('0'));
