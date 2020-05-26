@@ -111,15 +111,18 @@ Test(ctype, isprint)
 	cr_assert(!x_isprint('\n'));
 }
 
-Test(ctype, isupper)
+Test(ctype, ispunct)
 {
-	cr_assert(x_isupper('A'));
-	cr_assert(x_isupper('N'));
-	cr_assert(x_isupper('Z'));
-	cr_assert(!x_isupper('a'));
-	cr_assert(!x_isupper('z'));
-	cr_assert(!x_isupper('!'));
-	cr_assert(!x_isupper('\0'));
+	cr_assert(x_ispunct('!'));
+	cr_assert(x_ispunct('@'));
+	cr_assert(x_ispunct('"'));
+	cr_assert(x_ispunct('['));
+	cr_assert(x_ispunct('~'));
+	cr_assert(!x_ispunct(' '));
+	cr_assert(!x_ispunct('a'));
+	cr_assert(!x_ispunct('A'));
+	cr_assert(!x_ispunct('0'));
+	cr_assert(!x_ispunct('\0'));
 }
 
 Test(ctype, isspace)
@@ -134,6 +137,17 @@ Test(ctype, isspace)
 	cr_assert(!x_isspace('0'));
 	cr_assert(!x_isspace('!'));
 	cr_assert(!x_isspace('\0'));
+}
+
+Test(ctype, isupper)
+{
+	cr_assert(x_isupper('A'));
+	cr_assert(x_isupper('N'));
+	cr_assert(x_isupper('Z'));
+	cr_assert(!x_isupper('a'));
+	cr_assert(!x_isupper('z'));
+	cr_assert(!x_isupper('!'));
+	cr_assert(!x_isupper('\0'));
 }
 
 Test(ctype, isxdigit)
