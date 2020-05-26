@@ -162,3 +162,23 @@ Test(ctype, isxdigit)
 	cr_assert(!x_isxdigit('g'));
 	cr_assert(!x_isxdigit('\0'));
 }
+
+Test(ctype, tolower)
+{
+	cr_assert(x_tolower('A') == 'a');
+	cr_assert(x_tolower('N') == 'n');
+	cr_assert(x_tolower('Z') == 'z');
+	cr_assert(x_tolower('a') == 'a');
+	cr_assert(x_tolower('!') == '!');
+	cr_assert(x_tolower('\0') == '\0');
+}
+
+Test(ctype, toupper)
+{
+	cr_assert(x_toupper('a') == 'A');
+	cr_assert(x_toupper('n') == 'N');
+	cr_assert(x_toupper('z') == 'Z');
+	cr_assert(x_toupper('A') == 'A');
+	cr_assert(x_toupper('!') == '!');
+	cr_assert(x_toupper('\0') == '\0');
+}

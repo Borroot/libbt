@@ -15,8 +15,7 @@ int x_isspace(int c);
 int x_isupper(int c);
 int x_isxdigit(int c);
 
-int x_toascii(int c);//
-int x_tolower(int c);//
-int x_toupper(int c);//
+int x_tolower(int c);
+int x_toupper(int c);
 
 #endif
