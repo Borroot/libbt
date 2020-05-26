@@ -47,6 +47,19 @@ Test(ctype, isblank)
 	cr_assert(!x_isblank('\r'));
 }
 
+Test(ctype, iscntrl)
+{
+	cr_assert(x_iscntrl('\0'));
+	cr_assert(x_iscntrl('\t'));
+	cr_assert(x_iscntrl('\n'));
+	cr_assert(x_iscntrl('\r'));
+	cr_assert(x_iscntrl(0));
+	cr_assert(x_iscntrl(31));
+	cr_assert(x_iscntrl(127));
+	cr_assert(!x_iscntrl(32));
+	cr_assert(!x_iscntrl(126));
+}
+
 Test(ctype, isdigit)
 {
 	cr_assert(x_isdigit('0'));
