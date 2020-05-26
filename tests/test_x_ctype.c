@@ -122,6 +122,20 @@ Test(ctype, isupper)
 	cr_assert(!x_isupper('\0'));
 }
 
+Test(ctype, isspace)
+{
+	cr_assert(x_isspace(' '));
+	cr_assert(x_isspace('\t'));
+	cr_assert(x_isspace('\f'));
+	cr_assert(x_isspace('\n'));
+	cr_assert(x_isspace('\r'));
+	cr_assert(x_isspace('\v'));
+	cr_assert(!x_isspace('a'));
+	cr_assert(!x_isspace('0'));
+	cr_assert(!x_isspace('!'));
+	cr_assert(!x_isspace('\0'));
+}
+
 Test(ctype, isxdigit)
 {
 	cr_assert(x_isxdigit('0'));

@@ -11,7 +11,7 @@ int x_isgraph(int c);
 int x_islower(int c);
 int x_isprint(int c);
 int x_ispunct(int c);//
-int x_isspace(int c);//
+int x_isspace(int c);
 int x_isupper(int c);
 int x_isxdigit(int c);
 
