@@ -45,6 +45,7 @@ Test(ctype, isblank)
 	cr_assert(x_isblank('\t'));
 	cr_assert(!x_isblank('\n'));
 	cr_assert(!x_isblank('\r'));
+	cr_assert(!x_isblank('\0'));
 }
 
 Test(ctype, iscntrl)
@@ -90,4 +91,17 @@ Test(ctype, isupper)
 	cr_assert(!x_isupper('z'));
 	cr_assert(!x_isupper('!'));
 	cr_assert(!x_isupper('\0'));
+}
+
+Test(ctype, isxdigit)
+{
+	cr_assert(x_isxdigit('0'));
+	cr_assert(x_isxdigit('5'));
+	cr_assert(x_isxdigit('9'));
+	cr_assert(x_isxdigit('a'));
+	cr_assert(x_isxdigit('f'));
+	cr_assert(x_isxdigit('A'));
+	cr_assert(x_isxdigit('F'));
+	cr_assert(!x_isxdigit('g'));
+	cr_assert(!x_isxdigit('\0'));
 }
