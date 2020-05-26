@@ -39,6 +39,14 @@ Test(ctype, isascii)
 	cr_assert(!x_isascii(128));
 }
 
+Test(ctype, isblank)
+{
+	cr_assert(x_isblank(' '));
+	cr_assert(x_isblank('\t'));
+	cr_assert(!x_isblank('\n'));
+	cr_assert(!x_isblank('\r'));
+}
+
 Test(ctype, isdigit)
 {
 	cr_assert(x_isdigit('0'));
