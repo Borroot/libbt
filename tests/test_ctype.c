@@ -1,6 +1,5 @@
 #include <criterion/criterion.h>
 #include <x_ctype.h>
-#include <ctype.h>
 
 Test(ctype, isalnum)
 {
@@ -71,6 +70,21 @@ Test(ctype, isdigit)
 	cr_assert(!x_isdigit('\0'));
 }
 
+Test(ctype, isgraph)
+{
+	cr_assert(x_isgraph('0'));
+	cr_assert(x_isgraph('a'));
+	cr_assert(x_isgraph('A'));
+	cr_assert(x_isgraph('!'));
+	cr_assert(x_isgraph('~'));
+	cr_assert(x_isgraph('\''));
+	cr_assert(!x_isgraph(' '));
+	cr_assert(!x_isgraph(127));
+	cr_assert(!x_isgraph('\0'));
+	cr_assert(!x_isgraph('\r'));
+	cr_assert(!x_isgraph('\n'));
+}
+
 Test(ctype, islower)
 {
 	cr_assert(x_islower('a'));
@@ -80,6 +94,21 @@ Test(ctype, islower)
 	cr_assert(!x_islower('Z'));
 	cr_assert(!x_islower('!'));
 	cr_assert(!x_islower('\0'));
+}
+
+Test(ctype, isprint)
+{
+	cr_assert(x_isprint('0'));
+	cr_assert(x_isprint('a'));
+	cr_assert(x_isprint('A'));
+	cr_assert(x_isprint('!'));
+	cr_assert(x_isprint(' '));
+	cr_assert(x_isprint('~'));
+	cr_assert(x_isprint('\''));
+	cr_assert(!x_isprint(127));
+	cr_assert(!x_isprint('\0'));
+	cr_assert(!x_isprint('\r'));
+	cr_assert(!x_isprint('\n'));
 }
 
 Test(ctype, isupper)
