@@ -1,0 +1,45 @@
+TARGET    = libx.a
+TESTER    = test
+
+SRC_DIR   = src
+OBJ_DIR   = obj
+INC_DIR   = inc
+TST_DIR   = tests
+
+BIN_SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+BIN_OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(BIN_SRC_FILES))
+BIN_INC_FILES = $(wildcard $(INC_DIR)/*.h)
+
+TST_SRC_FILES = $(wildcard $(TST_DIR)/*.c)
+TST_OBJ_FILES = $(patsubst $(TST_DIR)/%.c, $(OBJ_DIR)/%.o, $(TST_SRC_FILES))
+
+CFLAGS    = -Wall -Wextra -Werror -pedantic
+IFLAGS    = -I $(INC_DIR)
+TFLAGS    = -lcriterion $(TARGET)
+
+all: $(TARGET) $(TESTER)
+
+$(TARGET): $(BIN_OBJ_FILES)
+	@printf "ARCHIVE\t%s\n" $@
+	@ar rcs $@ $^
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(BIN_INC_FILES)
+	@printf "CC\t%s\n" $@
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(IFLAGS) -c -o $@ $<
+
+$(TESTER): $(TST_OBJ_FILES) $(TARGET)
+	@printf "LINK\t%s\n" $@
+	@$(CC) $(CFLAGS) $(TFLAGS) -o $@ $^
+
+$(OBJ_DIR)/%.o: $(TST_DIR)/%.c $(BIN_INC_FILES)
+	@printf "CC\t%s\n" $@
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(IFLAGS) -c -o $@ $<
+
+clean:
+	@rm -rf $(OBJ_DIR) $(TARGET) $(TESTER)
+
+re: clean all
+
+.PHONY: all clean re
