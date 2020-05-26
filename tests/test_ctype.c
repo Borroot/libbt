@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include <libx.h>
+#include <x_ctype.h>
 #include <ctype.h>
 
 Test(ctype, isalpha)
