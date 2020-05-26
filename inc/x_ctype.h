@@ -4,6 +4,7 @@
 int x_isalpha(int c);
 int x_isalnum(int c);
 int x_isascii(int c);
+int x_isblank(int c);
 int x_isdigit(int c);
 int x_islower(int c);
 int x_isprint(int c);

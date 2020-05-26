@@ -2,6 +2,16 @@
 #include <x_ctype.h>
 #include <ctype.h>
 
+Test(ctype, isalnum)
+{
+	cr_assert(x_isalnum('a'));
+	cr_assert(x_isalnum('A'));
+	cr_assert(x_isalnum('0'));
+	cr_assert(x_isalnum('9'));
+	cr_assert(!x_isalnum('!'));
+	cr_assert(!x_isalnum('\0'));
+}
+
 Test(ctype, isalpha)
 {
 	cr_assert(x_isalpha('a'));
@@ -25,6 +35,8 @@ Test(ctype, isascii)
 	cr_assert(x_isascii('@'));
 	cr_assert(x_isascii(0));
 	cr_assert(x_isascii(127));
+	cr_assert(!x_isascii(-1));
+	cr_assert(!x_isascii(128));
 }
 
 Test(ctype, isdigit)
