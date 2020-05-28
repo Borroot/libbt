@@ -288,3 +288,13 @@ Test(string, strndup)
 
 	free(result);
 }
+
+Test(string, strpbrk)
+{
+	const char *s = "hello world";
+
+	cr_assert_eq(x_strpbrk(s, "le"), s + 1);
+	cr_assert_eq(x_strpbrk(s, "r"), s + 8);
+	cr_assert_eq(x_strpbrk(s, ""), NULL);
+	cr_assert_eq(x_strpbrk(s, "x"), NULL);
+}
