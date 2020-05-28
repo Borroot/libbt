@@ -27,7 +27,8 @@ int      x_strncmp(const char *, const char *, size_t);
 char    *x_strdup(const char *);
 char    *x_strndup(const char *, size_t);
 char    *x_strpbrk(const char *, const char *);
-//char    *x_strstr(const char *, const char *);
+char    *x_strstr(const char *, const char *);
+//char    *x_strcasestr(const char *, const char *);
 //size_t   x_strspn(const char *, const char *);
 //size_t   x_strcspn(const char *, const char *);
 

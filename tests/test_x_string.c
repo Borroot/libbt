@@ -298,3 +298,15 @@ Test(string, strpbrk)
 	cr_assert_eq(x_strpbrk(s, ""), NULL);
 	cr_assert_eq(x_strpbrk(s, "x"), NULL);
 }
+
+Test(string, strstr)
+{
+	const char *s = "hello world";
+
+	cr_assert_eq(x_strstr(s, "hello"), s);
+	cr_assert_eq(x_strstr(s, "llo"), s + 2);
+	cr_assert_eq(x_strstr(s, "d"), s + 10);
+	cr_assert_eq(x_strstr(s, ""), s);
+	cr_assert_eq(x_strstr(s, "x"), NULL);
+	cr_assert_eq(x_strstr(s, "worlds"), NULL);
+}
