@@ -24,7 +24,7 @@ Test(string, strcpy)
 {
 	char *result;
 
-	char *src1 = "hello world";
+	const char *src1 = "hello world";
 	char dst1[11] = "";
 	result = x_strcpy(dst1, src1);
 	cr_assert_str_eq(dst1, src1);
@@ -35,13 +35,13 @@ Test(string, strcpy)
 	cr_assert_str_eq(dst2, src1);
 	cr_assert_str_eq(result, dst2);
 
-	char *src2 = "";
+	const char *src2 = "";
 	char dst3[11] = "hello world";
 	result = x_strcpy(dst3, src2);
 	cr_assert_str_eq(dst3, src2);
 	cr_assert_str_eq(result, dst3);
 
-	char *src3 = "hello w\0rld";
+	const char *src3 = "hello w\0rld";
 	char dst4[11] = "";
 	result = x_strcpy(dst4, src3);
 	cr_assert_str_eq(dst4, src3);
@@ -52,7 +52,7 @@ Test(string, strncpy)
 {
 	char *result;
 
-	char *src1 = "hello world";
+	const char *src1 = "hello world";
 	char dst1[11] = "";
 	result = x_strncpy(dst1, src1, 11);
 	cr_assert_str_eq(dst1, src1);
@@ -63,7 +63,7 @@ Test(string, strncpy)
 	cr_assert_str_eq(dst2, src1);
 	cr_assert_str_eq(result, dst2);
 
-	char *src2 = "";
+	const char *src2 = "";
 	char dst3[11] = "hello world";
 	result = x_strncpy(dst3, src2, 11);
 	cr_assert_str_eq(dst3, src2);
@@ -74,7 +74,7 @@ Test(string, strncpy)
 	cr_assert_str_eq(dst4, src1);
 	cr_assert_str_eq(result, dst4);
 
-	char *src3 = "";
+	const char *src3 = "";
 	char dst5[11] = "hello world";
 	result = x_strncpy(dst5, src3, 3);
 	cr_assert_str_eq(dst5, src3);
@@ -85,7 +85,7 @@ Test(string, stpcpy)
 {
 	char *result;
 
-	char *src1 = "hello world";
+	const char *src1 = "hello world";
 	char dst1[11] = "";
 	result = x_stpcpy(dst1, src1);
 	cr_assert_str_eq(dst1, src1);
@@ -96,13 +96,13 @@ Test(string, stpcpy)
 	cr_assert_str_eq(dst2, src1);
 	cr_assert_str_eq(result, dst2 + 11);
 
-	char *src2 = "";
+	const char *src2 = "";
 	char dst3[11] = "hello world";
 	result = x_stpcpy(dst3, src2);
 	cr_assert_str_eq(dst3, src2);
 	cr_assert_str_eq(result, dst3);
 
-	char *src3 = "hello w\0rld";
+	const char *src3 = "hello w\0rld";
 	char dst4[11] = "";
 	result = x_stpcpy(dst4, src3);
 	cr_assert_str_eq(dst4, src3);
@@ -113,7 +113,7 @@ Test(string, stpncpy)
 {
 	char *result;
 
-	char *src1 = "hello world";
+	const char *src1 = "hello world";
 	char dst1[11] = "";
 	result = x_stpncpy(dst1, src1, 11);
 	cr_assert_str_eq(dst1, src1);
@@ -124,7 +124,7 @@ Test(string, stpncpy)
 	cr_assert_str_eq(dst2, src1);
 	cr_assert_str_eq(result, dst2 + 11);
 
-	char *src2 = "";
+	const char *src2 = "";
 	char dst3[11] = "hello world";
 	result = x_stpncpy(dst3, src2, 11);
 	cr_assert_str_eq(dst3, src2);
@@ -135,7 +135,7 @@ Test(string, stpncpy)
 	cr_assert_str_eq(dst4, src1);
 	cr_assert_str_eq(result, dst4 + 11);
 
-	char *src3 = "";
+	const char *src3 = "";
 	char dst5[11] = "hello world";
 	result = x_stpncpy(dst5, src3, 3);
 	cr_assert_str_eq(dst5, src3);
@@ -146,19 +146,19 @@ Test(string, strcat)
 {
 	char *result;
 
-	char *src1 = " world";
+	const char *src1 = " world";
 	char dst1[11] = "hello";
 	result = x_strcat(dst1, src1);
 	cr_assert_str_eq(dst1, "hello world");
 	cr_assert_str_eq(result, "hello world");
 
-	char *src2 = "";
+	const char *src2 = "";
 	char dst2[11] = "hello";
 	result = x_strcat(dst2, src2);
 	cr_assert_str_eq(dst2, "hello");
 	cr_assert_str_eq(result, "hello");
 
-	char *src3 = "hello";
+	const char *src3 = "hello";
 	char dst3[11] = "";
 	result = x_strcat(dst3, src3);
 	cr_assert_str_eq(dst3, "hello");
@@ -169,31 +169,31 @@ Test(string, strncat)
 {
 	char *result;
 
-	char *src1 = " world";
+	const char *src1 = " world";
 	char dst1[11] = "hello";
 	result = x_strncat(dst1, src1, 6);
 	cr_assert_str_eq(dst1, "hello world");
 	cr_assert_str_eq(result, "hello world");
 
-	char *src2 = "";
+	const char *src2 = "";
 	char dst2[11] = "hello";
 	result = x_strncat(dst2, src2, 0);
 	cr_assert_str_eq(dst2, "hello");
 	cr_assert_str_eq(result, "hello");
 
-	char *src3 = "hello";
+	const char *src3 = "hello";
 	char dst3[11] = "";
 	result = x_strncat(dst3, src3, 5);
 	cr_assert_str_eq(dst3, "hello");
 	cr_assert_str_eq(result, "hello");
 
-	char *src4 = " world";
+	const char *src4 = " world";
 	char dst4[11] = "hello";
 	result = x_strncat(dst4, src4, 3);
 	cr_assert_str_eq(dst4, "hello wo");
 	cr_assert_str_eq(result, "hello wo");
 
-	char *src5 = " world";
+	const char *src5 = " world";
 	char dst5[11] = "hello";
 	result = x_strncat(dst5, src5, 0);
 	cr_assert_str_eq(dst5, "hello");
@@ -202,7 +202,7 @@ Test(string, strncat)
 
 Test(string, strchr)
 {
-	char *s = "hello world";
+	const char *s = "hello world";
 
 	cr_assert_eq(x_strchr(s, 'h'), s);
 	cr_assert_eq(x_strchr(s, 'l'), s + 2);
@@ -213,7 +213,7 @@ Test(string, strchr)
 
 Test(string, strrchr)
 {
-	char *s = "hello world";
+	const char *s = "hello world";
 
 	cr_assert_eq(x_strrchr(s, 'h'), s);
 	cr_assert_eq(x_strrchr(s, 'l'), s + 9);
@@ -224,7 +224,7 @@ Test(string, strrchr)
 
 Test(string, strchrnul)
 {
-	char *s = "hello world";
+	const char *s = "hello world";
 
 	cr_assert_eq(x_strchrnul(s, 'h'), s);
 	cr_assert_eq(x_strchrnul(s, 'l'), s + 2);
@@ -249,4 +249,42 @@ Test(string, strncmp)
 	cr_assert_eq(x_strncmp("ABA", "ABZ", 3), -25);
 	cr_assert_eq(x_strncmp("ABJ", "ABC", 3), 7);
 	cr_assert_eq(x_strncmp("ABC", "CBA", 0), 0);
+}
+
+Test(string, strdup)
+{
+	char *result;
+
+	const char *s1 = "hello world";
+	result = x_strdup(s1);
+	cr_assert_neq(result, s1);
+	cr_assert_str_eq(result, s1);
+
+	const char *s2 = "";
+	result = x_strdup(s2);
+	cr_assert_neq(result, s2);
+	cr_assert_str_eq(result, s2);
+
+	free(result);
+}
+
+Test(string, strndup)
+{
+	char *result;
+
+	const char *s1 = "hello world";
+	result = x_strndup(s1, 11);
+	cr_assert_neq(result, s1);
+	cr_assert_str_eq(result, s1);
+
+	result = x_strndup(s1, 8);
+	cr_assert_neq(result, s1);
+	cr_assert_str_eq(result, "hello wo");
+
+	const char *s2 = "";
+	result = x_strndup(s2, 0);
+	cr_assert_neq(result, s2);
+	cr_assert_str_eq(result, s2);
+
+	free(result);
 }
