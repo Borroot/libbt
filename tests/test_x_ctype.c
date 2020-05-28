@@ -53,6 +53,7 @@ Test(ctype, iscntrl)
 	cr_assert(x_iscntrl('\t'));
 	cr_assert(x_iscntrl('\n'));
 	cr_assert(x_iscntrl('\r'));
+	cr_assert(x_iscntrl('\b'));
 	cr_assert(x_iscntrl(0));
 	cr_assert(x_iscntrl(31));
 	cr_assert(x_iscntrl(127));

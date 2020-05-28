@@ -2,8 +2,8 @@
 
 int x_tolower(int c)
 {
-	if (x_isupper(c)) {
+	if (x_isupper(c))
 		return 'a' + (c - 'A');
-	}
-	return c;
+	else
+		return c;
 }

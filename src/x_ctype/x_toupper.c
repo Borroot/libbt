@@ -2,8 +2,8 @@
 
 int x_toupper(int c)
 {
-	if (x_islower(c)) {
+	if (x_islower(c))
 		return 'A' + (c - 'a');
-	}
-	return c;
+	else
+		return c;
 }
