@@ -1,6 +1,4 @@
 #include <criterion/criterion.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <x_string.h>
 
 Test(string, strlen)
@@ -150,4 +148,62 @@ Test(string, stpncpy)
 	result = x_stpncpy(dst5, src3, 3);
 	cr_assert_str_eq(dst5, src3);
 	cr_assert_str_eq(result, dst5);
+}
+
+Test(string, strcat)
+{
+	char *result;
+
+	char *src1 = " world";
+	char dst1[11] = "hello";
+	result = x_strcat(dst1, src1);
+	cr_assert_str_eq(dst1, "hello world");
+	cr_assert_str_eq(result, "hello world");
+
+	char *src2 = "";
+	char dst2[11] = "hello";
+	result = x_strcat(dst2, src2);
+	cr_assert_str_eq(dst2, "hello");
+	cr_assert_str_eq(result, "hello");
+
+	char *src3 = "hello";
+	char dst3[11] = "";
+	result = x_strcat(dst3, src3);
+	cr_assert_str_eq(dst3, "hello");
+	cr_assert_str_eq(result, "hello");
+}
+
+Test(string, strncat)
+{
+	char *result;
+
+	char *src1 = " world";
+	char dst1[11] = "hello";
+	result = x_strncat(dst1, src1, 6);
+	cr_assert_str_eq(dst1, "hello world");
+	cr_assert_str_eq(result, "hello world");
+
+	char *src2 = "";
+	char dst2[11] = "hello";
+	result = x_strncat(dst2, src2, 0);
+	cr_assert_str_eq(dst2, "hello");
+	cr_assert_str_eq(result, "hello");
+
+	char *src3 = "hello";
+	char dst3[11] = "";
+	result = x_strncat(dst3, src3, 5);
+	cr_assert_str_eq(dst3, "hello");
+	cr_assert_str_eq(result, "hello");
+
+	char *src4 = " world";
+	char dst4[11] = "hello";
+	result = x_strncat(dst4, src4, 3);
+	cr_assert_str_eq(dst4, "hello wo");
+	cr_assert_str_eq(result, "hello wo");
+
+	char *src5 = " world";
+	char dst5[11] = "hello";
+	result = x_strncat(dst5, src5, 0);
+	cr_assert_str_eq(dst5, "hello");
+	cr_assert_str_eq(result, "hello");
 }
