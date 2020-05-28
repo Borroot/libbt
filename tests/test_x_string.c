@@ -4,29 +4,20 @@
 
 Test(string, strlen)
 {
-	char *s = "hello world";
-	cr_assert(x_strlen(s) == 11);
-	s = "hello\0world";
-	cr_assert(x_strlen(s) == 5);
-	s = "";
-	cr_assert(x_strlen(s) == 0);
+	cr_assert(x_strlen("hello world") == 11);
+	cr_assert(x_strlen("hello\0world") == 5);
+	cr_assert(x_strlen("") == 0);
 }
 
 Test(string, strnlen)
 {
-	char *s = "hello world";
-	cr_assert(x_strnlen(s, 20) == 11);
-	s = "hello\0world";
-	cr_assert(x_strnlen(s, 20) == 5);
-	s = "";
-	cr_assert(x_strnlen(s, 20) == 0);
+	cr_assert(x_strnlen("hello world", 20) == 11);
+	cr_assert(x_strnlen("hello\0world", 20) == 5);
+	cr_assert(x_strnlen("", 20) == 0);
 
-	s = "hello world";
-	cr_assert(x_strnlen(s, 8) == 8);
-	s = "hello\0world";
-	cr_assert(x_strnlen(s, 8) == 5);
-	s = "";
-	cr_assert(x_strnlen(s, 0) == 0);
+	cr_assert(x_strnlen("hello world", 8) == 8);
+	cr_assert(x_strnlen("hello\0world", 8) == 5);
+	cr_assert(x_strnlen("", 0) == 0);
 }
 
 Test(string, strcpy)
@@ -211,63 +202,51 @@ Test(string, strncat)
 
 Test(string, strchr)
 {
-	char *result;
 	char *s = "hello world";
 
-	result = x_strchr(s, 'h');
-	cr_assert_eq(result, s);
-
-	result = x_strchr(s, 'l');
-	cr_assert_eq(result, s + 2);
-
-	result = x_strchr(s, 'd');
-	cr_assert_eq(result, s + 10);
-
-	result = x_strchr(s, '\0');
-	cr_assert_eq(result, s + 11);
-
-	result = x_strchr(s, 'x');
-	cr_assert_eq(result, NULL);
+	cr_assert_eq(x_strchr(s, 'h'), s);
+	cr_assert_eq(x_strchr(s, 'l'), s + 2);
+	cr_assert_eq(x_strchr(s, 'd'), s + 10);
+	cr_assert_eq(x_strchr(s, '\0'), s + 11);
+	cr_assert_eq(x_strchr(s, 'x'), NULL);
 }
 
 Test(string, strrchr)
 {
-	char *result;
 	char *s = "hello world";
 
-	result = x_strrchr(s, 'h');
-	cr_assert_eq(result, s);
-
-	result = x_strrchr(s, 'l');
-	cr_assert_eq(result, s + 9);
-
-	result = x_strrchr(s, 'd');
-	cr_assert_eq(result, s + 10);
-
-	result = x_strrchr(s, '\0');
-	cr_assert_eq(result, s + 11);
-
-	result = x_strrchr(s, 'x');
-	cr_assert_eq(result, NULL);
+	cr_assert_eq(x_strrchr(s, 'h'), s);
+	cr_assert_eq(x_strrchr(s, 'l'), s + 9);
+	cr_assert_eq(x_strrchr(s, 'd'), s + 10);
+	cr_assert_eq(x_strrchr(s, '\0'), s + 11);
+	cr_assert_eq(x_strrchr(s, 'x'), NULL);
 }
 
 Test(string, strchrnul)
 {
-	char *result;
 	char *s = "hello world";
 
-	result = x_strchrnul(s, 'h');
-	cr_assert_eq(result, s);
+	cr_assert_eq(x_strchrnul(s, 'h'), s);
+	cr_assert_eq(x_strchrnul(s, 'l'), s + 2);
+	cr_assert_eq(x_strchrnul(s, 'd'), s + 10);
+	cr_assert_eq(x_strchrnul(s, '\0'), s + 11);
+	cr_assert_eq(x_strchrnul(s, 'x'), s + 11);
+}
 
-	result = x_strchrnul(s, 'l');
-	cr_assert_eq(result, s + 2);
+Test(string, strcmp)
+{
+	cr_assert_eq(x_strcmp("ABC", "ABC"), 0);
+	cr_assert_eq(x_strcmp("ABC", "AB"), 67);
+	cr_assert_eq(x_strcmp("ABA", "ABZ"), -25);
+	cr_assert_eq(x_strcmp("ABJ", "ABC"), 7);
+}
 
-	result = x_strchrnul(s, 'd');
-	cr_assert_eq(result, s + 10);
-
-	result = x_strchrnul(s, '\0');
-	cr_assert_eq(result, s + 11);
-
-	result = x_strchrnul(s, 'x');
-	cr_assert_eq(result, s + 11);
+Test(string, strncmp)
+{
+	cr_assert_eq(x_strncmp("ABC", "ABC", 3), 0);
+	cr_assert_eq(x_strncmp("ABC", "AB", 3), 67);
+	cr_assert_eq(x_strncmp("ABC", "AB", 2), 0);
+	cr_assert_eq(x_strncmp("ABA", "ABZ", 3), -25);
+	cr_assert_eq(x_strncmp("ABJ", "ABC", 3), 7);
+	cr_assert_eq(x_strncmp("ABC", "CBA", 0), 0);
 }
