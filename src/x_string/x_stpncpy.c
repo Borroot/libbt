@@ -2,9 +2,9 @@
 
 char *x_stpncpy(char *dst, const char *src, size_t n)
 {
-	size_t i = 0;
+	size_t i;
 
-	for ( ; i < n && src[i] != '\0'; i++)
+	for (i = 0 ; i < n && src[i] != '\0'; i++)
 		dst[i] = src[i];
 	size_t last = i;
 	for ( ; i < n; i++)

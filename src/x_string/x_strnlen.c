@@ -2,9 +2,9 @@
 
 size_t x_strnlen(const char *s, size_t maxlen)
 {
-	size_t i = 0;
+	size_t i;
 
-	for ( ; s[i] != '\0' && i < maxlen; i++)
+	for (i = 0; s[i] != '\0' && i < maxlen; i++)
 		;
 
 	return i;

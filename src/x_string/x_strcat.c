@@ -4,9 +4,9 @@
 char *x_strcat(char *dst, const char *src)
 {
 	size_t dst_len = x_strlen(dst);
-	size_t i = 0;
+	size_t i;
 
-	for ( ; src[i] != '\0'; i++)
+	for (i = 0; src[i] != '\0'; i++)
 		dst[dst_len + i] = src[i];
 	dst[dst_len + i] = '\0';
 
