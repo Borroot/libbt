@@ -1,4 +1,5 @@
 #include <criterion/criterion.h>
+#include <stddef.h>
 #include <x_string.h>
 
 Test(string, strlen)
@@ -206,4 +207,67 @@ Test(string, strncat)
 	result = x_strncat(dst5, src5, 0);
 	cr_assert_str_eq(dst5, "hello");
 	cr_assert_str_eq(result, "hello");
+}
+
+Test(string, strchr)
+{
+	char *result;
+	char *s = "hello world";
+
+	result = x_strchr(s, 'h');
+	cr_assert_eq(result, s);
+
+	result = x_strchr(s, 'l');
+	cr_assert_eq(result, s + 2);
+
+	result = x_strchr(s, 'd');
+	cr_assert_eq(result, s + 10);
+
+	result = x_strchr(s, '\0');
+	cr_assert_eq(result, s + 11);
+
+	result = x_strchr(s, 'x');
+	cr_assert_eq(result, NULL);
+}
+
+Test(string, strrchr)
+{
+	char *result;
+	char *s = "hello world";
+
+	result = x_strrchr(s, 'h');
+	cr_assert_eq(result, s);
+
+	result = x_strrchr(s, 'l');
+	cr_assert_eq(result, s + 9);
+
+	result = x_strrchr(s, 'd');
+	cr_assert_eq(result, s + 10);
+
+	result = x_strrchr(s, '\0');
+	cr_assert_eq(result, s + 11);
+
+	result = x_strrchr(s, 'x');
+	cr_assert_eq(result, NULL);
+}
+
+Test(string, strchrnul)
+{
+	char *result;
+	char *s = "hello world";
+
+	result = x_strchrnul(s, 'h');
+	cr_assert_eq(result, s);
+
+	result = x_strchrnul(s, 'l');
+	cr_assert_eq(result, s + 2);
+
+	result = x_strchrnul(s, 'd');
+	cr_assert_eq(result, s + 10);
+
+	result = x_strchrnul(s, '\0');
+	cr_assert_eq(result, s + 11);
+
+	result = x_strchrnul(s, 'x');
+	cr_assert_eq(result, s + 11);
 }
