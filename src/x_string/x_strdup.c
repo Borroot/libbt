@@ -5,8 +5,5 @@
 char *x_strdup(const char *s)
 {
 	char *dup = (char *)malloc(x_strlen(s) + 1);
-
-	if (dup == NULL)
-		return NULL;
-	return x_strcpy(dup, s);
+	return (dup == NULL) ? NULL : x_strcpy(dup, s);
 }
