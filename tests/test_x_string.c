@@ -259,11 +259,13 @@ Test(string, strdup)
 	result = x_strdup(s1);
 	cr_assert_neq(result, s1);
 	cr_assert_str_eq(result, s1);
+	cr_assert(x_strlen(result) == x_strlen(s1));
 
 	const char s2[] = "";
 	result = x_strdup(s2);
 	cr_assert_neq(result, s2);
 	cr_assert_str_eq(result, s2);
+	cr_assert(x_strlen(result) == x_strlen(s2));
 
 	free(result);
 }
@@ -276,15 +278,18 @@ Test(string, strndup)
 	result = x_strndup(s1, 11);
 	cr_assert_neq(result, s1);
 	cr_assert_str_eq(result, s1);
+	cr_assert(x_strlen(result) == x_strlen(s1));
 
 	result = x_strndup(s1, 8);
 	cr_assert_neq(result, s1);
 	cr_assert_str_eq(result, "hello wo");
+	cr_assert(x_strlen(result) == x_strlen("hello wo"));
 
 	const char s2[] = "";
 	result = x_strndup(s2, 0);
 	cr_assert_neq(result, s2);
 	cr_assert_str_eq(result, s2);
+	cr_assert(x_strlen(result) == x_strlen(s2));
 
 	free(result);
 }

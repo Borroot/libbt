@@ -4,8 +4,7 @@
 
 char *x_strdup(const char *s)
 {
-	size_t len = x_strlen(s);
-	char *dup = (char *)malloc(len);
+	char *dup = (char *)malloc(x_strlen(s) + 1);
 
 	if (dup == NULL)
 		return NULL;
