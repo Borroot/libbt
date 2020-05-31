@@ -34,7 +34,7 @@ size_t   x_strcspn(const char *, const char *);
 
 //char    *x_strnew(size_t);
 //void     x_strdel(char *);
-//void     x_strclr(char *);
+void     x_strclr(char *);
 void     x_striter(char *, void (*)(char *));
 char    *x_strmap(const char *, char (*)(char));
 //int      x_strequ(const char *, const char *);
