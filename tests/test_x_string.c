@@ -1,5 +1,6 @@
 #include <criterion/criterion.h>
 #include <stddef.h>
+#include <x_ctype.h>
 #include <x_string.h>
 
 Test(string, strlen)
@@ -318,7 +319,14 @@ Test(string, strstr)
 
 Test(string, strcasestr)
 {
+	const char s[] = "heLlO WorLD";
 
+	cr_assert_eq(x_strcasestr(s, "hEllo"), s);
+	cr_assert_eq(x_strcasestr(s, "lLo"), s + 2);
+	cr_assert_eq(x_strcasestr(s, "D"), s + 10);
+	cr_assert_eq(x_strcasestr(s, ""), s);
+	cr_assert_eq(x_strcasestr(s, "x"), NULL);
+	cr_assert_eq(x_strcasestr(s, "worLds"), NULL);
 }
 
 Test(string, strspn)
@@ -339,4 +347,13 @@ Test(string, strcspn)
 	cr_assert_eq(x_strcspn("hello world", "xyz"), 11);
 	cr_assert_eq(x_strcspn("hello world", " "), 5);
 	cr_assert_eq(x_strcspn("hello world", "\0"), 11);
+}
+
+static char tmp_tolower(char c) { return (char)x_tolower((int)c); }
+static char tmp_toupper(char c) { return (char)x_toupper((int)c); }
+
+Test(string_extra, strmap)
+{
+	cr_assert_str_eq(x_strmap("HELLO WORLD", tmp_tolower), "hello world");
+	cr_assert_str_eq(x_strmap("hello world", tmp_toupper), "HELLO WORLD");
 }

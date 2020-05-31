@@ -28,7 +28,7 @@ char    *x_strdup(const char *);
 char    *x_strndup(const char *, size_t);
 char    *x_strpbrk(const char *, const char *);
 char    *x_strstr(const char *, const char *);
-//char    *x_strcasestr(const char *, const char *);
+char    *x_strcasestr(const char *, const char *);
 size_t   x_strspn(const char *, const char *);
 size_t   x_strcspn(const char *, const char *);
 
@@ -36,7 +36,7 @@ size_t   x_strcspn(const char *, const char *);
 //void     x_strdel(char *);
 //void     x_strclr(char *);
 //void     x_striter(char *, void (*)(char *));
-//char    *x_strmap(const char *, char (*)(char));
+char    *x_strmap(const char *, char (*)(char));
 //int      x_strequ(const char *, const char *);
 //int      x_strnequ(const char *, const char *, size_t);
 //char    *x_strsub(const char *, unsigned int, size_t);
