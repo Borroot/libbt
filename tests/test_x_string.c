@@ -386,3 +386,19 @@ Test(string_extra, strmap)
 	free(result1);
 	free(result2);
 }
+
+Test(string_extra, strequ)
+{
+	cr_assert_eq(x_strequ("", ""), 1);
+	cr_assert_eq(x_strequ("hello world", "hello world"), 1);
+	cr_assert_eq(x_strequ("hello worlD", "hello world"), 0);
+}
+
+Test(string_extra, strnequ)
+{
+	cr_assert_eq(x_strnequ("", "", 1), 1);
+	cr_assert_eq(x_strnequ("", "", 0), 1);
+	cr_assert_eq(x_strnequ("hello world", "hello world", 11), 1);
+	cr_assert_eq(x_strnequ("hello worlD", "hello world", 11), 0);
+	cr_assert_eq(x_strnequ("hello worlD", "hello world", 10), 1);
+}
