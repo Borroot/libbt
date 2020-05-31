@@ -315,3 +315,28 @@ Test(string, strstr)
 	cr_assert_eq(x_strstr(s, "x"), NULL);
 	cr_assert_eq(x_strstr(s, "worlds"), NULL);
 }
+
+Test(string, strcasestr)
+{
+
+}
+
+Test(string, strspn)
+{
+	cr_assert_eq(x_strspn("hello world", ""), 0);
+	cr_assert_eq(x_strspn("hello world", "helo"), 5);
+	cr_assert_eq(x_strspn("hello world", "e"), 0);
+	cr_assert_eq(x_strspn("hello world", "hello world"), 11);
+	cr_assert_eq(x_strspn("hello world", "helowrd "), 11);
+	cr_assert_eq(x_strspn("hello world", "H "), 0);
+}
+
+Test(string, strcspn)
+{
+	cr_assert_eq(x_strcspn("hello world", ""), 11);
+	cr_assert_eq(x_strcspn("hello world", "h"), 0);
+	cr_assert_eq(x_strcspn("hello world", "e"), 1);
+	cr_assert_eq(x_strcspn("hello world", "xyz"), 11);
+	cr_assert_eq(x_strcspn("hello world", " "), 5);
+	cr_assert_eq(x_strcspn("hello world", "\0"), 11);
+}
