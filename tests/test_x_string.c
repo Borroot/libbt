@@ -349,11 +349,24 @@ Test(string, strcspn)
 	cr_assert_eq(x_strcspn("hello world", "\0"), 11);
 }
 
-static char tmp_tolower(char c) { return (char)x_tolower((int)c); }
-static char tmp_toupper(char c) { return (char)x_toupper((int)c); }
+static void tmp1_tolower(char *c) { *c = (char)x_tolower((int)*c); }
+static void tmp1_toupper(char *c) { *c = (char)x_toupper((int)*c); }
+
+Test(string_extra, striter)
+{
+	char s[] = "hello world";
+
+	x_striter(s, tmp1_toupper);
+	cr_assert_str_eq(s, "HELLO WORLD");
+	x_striter(s, tmp1_tolower);
+	cr_assert_str_eq(s, "hello world");
+}
+
+static char tmp2_tolower(char c) { return (char)x_tolower((int)c); }
+static char tmp2_toupper(char c) { return (char)x_toupper((int)c); }
 
 Test(string_extra, strmap)
 {
-	cr_assert_str_eq(x_strmap("HELLO WORLD", tmp_tolower), "hello world");
-	cr_assert_str_eq(x_strmap("hello world", tmp_toupper), "HELLO WORLD");
+	cr_assert_str_eq(x_strmap("HELLO WORLD", tmp2_tolower), "hello world");
+	cr_assert_str_eq(x_strmap("hello world", tmp2_toupper), "HELLO WORLD");
 }
