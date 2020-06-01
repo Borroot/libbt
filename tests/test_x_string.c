@@ -26,6 +26,29 @@ Test(string, memcmp)
 	cr_assert_eq(x_memcmp("ABC", "CBA", 0), 0);
 }
 
+Test(string, memchr)
+{
+	const char s[] = "hello world";
+
+	cr_assert_eq(x_memchr(s, 'h', 0), NULL);
+	cr_assert_eq(x_memchr(s, 'h', 11), s);
+	cr_assert_eq(x_memchr(s, 'l', 11), s + 2);
+	cr_assert_eq(x_memchr(s, 'd', 11), s + 10);
+	cr_assert_eq(x_memchr(s, '\0', 12), s + 11);
+	cr_assert_eq(x_memchr(s, 'x', 11), NULL);
+}
+
+Test(string, memrchr)
+{
+	const char s[] = "hello world";
+
+	cr_assert_eq(x_memrchr(s, 'h', 11), s);
+	cr_assert_eq(x_memrchr(s, 'l', 11), s + 9);
+	cr_assert_eq(x_memrchr(s, 'd', 11), s + 10);
+	cr_assert_eq(x_memrchr(s, '\0', 12), s + 11);
+	cr_assert_eq(x_memrchr(s, 'x', 11), NULL);
+}
+
 Test(string, strlen)
 {
 	cr_assert(x_strlen("hello world") == 11);
