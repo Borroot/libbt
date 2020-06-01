@@ -16,6 +16,16 @@ Test(string, memset)
 	free(s);
 }
 
+Test(string, memcmp)
+{
+	cr_assert_eq(x_memcmp("ABC", "ABC", 3), 0);
+	cr_assert_eq(x_memcmp("ABC", "AB", 3), 67);
+	cr_assert_eq(x_memcmp("ABC", "AB", 2), 0);
+	cr_assert_eq(x_memcmp("ABA", "ABZ", 3), -25);
+	cr_assert_eq(x_memcmp("ABJ", "ABC", 3), 7);
+	cr_assert_eq(x_memcmp("ABC", "CBA", 0), 0);
+}
+
 Test(string, strlen)
 {
 	cr_assert(x_strlen("hello world") == 11);
