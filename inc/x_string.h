@@ -1,7 +1,7 @@
 #ifndef X_STRING_H
 #define X_STRING_H
 
-//void    *x_memset(void *, int, size_t);
+void    *x_memset(void *, int, size_t);
 //int      x_memcmp(const void *, const void *, size_t);
 //void    *x_memchr(const void *, int, size_t);
 //void    *x_memmove(void *, const void *, size_t);

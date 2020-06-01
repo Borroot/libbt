@@ -3,6 +3,19 @@
 #include <x_ctype.h>
 #include <x_string.h>
 
+Test(string, memset)
+{
+	char *s = (char *)malloc(10);
+
+	cr_assert(x_memset(s, '!', 10));
+	cr_assert_str_eq(s, "!!!!!!!!!!");
+
+	cr_assert(x_memset(s, '0', 5));
+	cr_assert_str_eq(s, "00000!!!!!");
+
+	free(s);
+}
+
 Test(string, strlen)
 {
 	cr_assert(x_strlen("hello world") == 11);
@@ -363,13 +376,20 @@ static void tmp1_toupper(char *c) { *c = (char)x_toupper((int)*c); }
 
 Test(string_extra, striter)
 {
-	char s[] = "hello world";
+	char s1[] = "hello world";
+	char s2[] = "hello, world! :)";
 
-	x_striter(s, tmp1_toupper);
-	cr_assert_str_eq(s, "HELLO WORLD");
+	x_striter(s1, tmp1_toupper);
+	cr_assert_str_eq(s1, "HELLO WORLD");
 
-	x_striter(s, tmp1_tolower);
-	cr_assert_str_eq(s, "hello world");
+	x_striter(s1, tmp1_tolower);
+	cr_assert_str_eq(s1, "hello world");
+
+	x_striter(s1, tmp1_tolower);
+	cr_assert_str_eq(s1, "hello world");
+
+	x_striter(s2, tmp1_toupper);
+	cr_assert_str_eq(s2, "HELLO, WORLD! :)");
 }
 
 static char tmp2_tolower(char c) { return (char)x_tolower((int)c); }
@@ -383,8 +403,12 @@ Test(string_extra, strmap)
 	char *result2 = x_strmap("hello world", tmp2_toupper);
 	cr_assert_str_eq(result2, "HELLO WORLD");
 
+	char *result3 = x_strmap("hello, world! :)", tmp2_toupper);
+	cr_assert_str_eq(result3, "HELLO, WORLD! :)");
+
 	free(result1);
 	free(result2);
+	free(result3);
 }
 
 Test(string_extra, strequ)
