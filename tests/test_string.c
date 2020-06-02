@@ -49,6 +49,42 @@ Test(string, memrchr)
 	cr_assert_eq(bt_memrchr(s, 'x', 11), NULL);
 }
 
+Test(string, memmove)
+{
+	char src[] = "hello world";
+	char dst[12];
+
+	cr_assert_str_eq(bt_memmove(dst, src, 12), src);
+	cr_assert_str_eq(bt_memmove(dst, src + 5, 7), src + 5);
+
+	bt_memmove(src + 2, src, 5);
+	cr_assert_str_eq(src, "hehelloorld");
+}
+
+Test(string, memcpy)
+{
+	char src[] = "hello world";
+	char dst[12];
+
+	cr_assert_str_eq(bt_memcpy(dst, src, 12), src);
+	cr_assert_str_eq(bt_memcpy(dst, src + 5, 7), src + 5);
+
+	bt_memcpy(src + 6, src, 5);
+	cr_assert_str_eq(src, "hello hello");
+}
+
+Test(string, memccpy)
+{
+	char src[] = "hello world";
+	char dst[12];
+
+	bt_memccpy(dst, src, '\0', 12);
+	cr_assert_str_eq(dst, src);
+
+	cr_assert_eq(bt_memccpy(dst, src, 'l', 11), dst + 3);
+	cr_assert_eq(bt_memccpy(dst, src, 'l', 2), NULL);
+}
+
 Test(string, strlen)
 {
 	cr_assert(bt_strlen("hello world") == 11);

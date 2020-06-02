@@ -5,9 +5,9 @@ void    *bt_memset(void *, int, size_t);
 int      bt_memcmp(const void *, const void *, size_t);
 void    *bt_memchr(const void *, int, size_t);
 void    *bt_memrchr(const void *, int, size_t);
-//void    *bt_memmove(void *, const void *, size_t);
-//void    *bt_memcpy(void *, const void *, size_t);
-//void    *bt_memccpy(void *, const void *, int, size_t);
+void    *bt_memmove(void *, const void *, size_t);
+void    *bt_memcpy(void *, const void *, size_t);
+void    *bt_memccpy(void *, const void *, int, size_t);
 
 //void    *bt_memalloc(size_t);
 //void     bt_memdel(void *);
