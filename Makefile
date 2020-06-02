@@ -1,4 +1,4 @@
-TARGET    = libx.a
+TARGET    = libbt.a
 TESTER    = test
 
 SRC_DIR   = src
