@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
-void bt_memdel(void **s)
+void bt_memdel(void **ap)
 {
-	free(*s);
-	*s = NULL;
+	free(*ap);
+	*ap = NULL;
 }

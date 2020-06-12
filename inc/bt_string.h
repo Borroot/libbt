@@ -33,11 +33,13 @@ char    *bt_strcasestr(const char *, const char *);
 size_t   bt_strspn(const char *, const char *);
 size_t   bt_strcspn(const char *, const char *);
 
-//char    *bt_strnew(size_t);
-//void     bt_strdel(char *);
+char    *bt_strnew(size_t);
+//void     bt_strdel(char **);
 void     bt_strclr(char *);
 void     bt_striter(char *, void (*)(char *));
+void     bt_striteri(char *, void (*)(unsigned int, char *));
 char    *bt_strmap(const char *, char (*)(char));
+char    *bt_strmapi(const char *, char (*)(unsigned int, char));
 int      bt_strequ(const char *, const char *);
 int      bt_strnequ(const char *, const char *, size_t);
 //char    *bt_strsub(const char *, unsigned int, size_t);

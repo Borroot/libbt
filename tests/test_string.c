@@ -448,6 +448,16 @@ Test(string, strcspn)
 	cr_assert_eq(bt_strcspn("hello world", "\0"), 11);
 }
 
+Test(string_extra, strnew)
+{
+	char *src = bt_strnew(100);
+
+	for (int i = 0; i < 100; i++) {
+		cr_assert_eq(src[i], '\0');
+	}
+	free(src);
+}
+
 Test(string_extra, strclr)
 {
 	char s[] = "hello world";
