@@ -551,3 +551,25 @@ Test(string_extra, strnequ)
 	cr_assert_eq(bt_strnequ("hello worlD", "hello world", 11), 0);
 	cr_assert_eq(bt_strnequ("hello worlD", "hello world", 10), 1);
 }
+
+Test(string_extra, strsub)
+{
+	const char s[] = "hello world";
+
+	char *result1 = bt_strsub(s, 6, 5);
+	cr_assert_str_eq(result1, "world");
+
+	char *result2 = bt_strsub(s, 6, 4);
+	cr_assert_str_eq(result2, "worl");
+
+	char *result3 = bt_strsub(s, 6, 0);
+	cr_assert_str_eq(result3, "");
+
+	char *result4 = bt_strsub(s, 0, 11);
+	cr_assert_str_eq(result4, "hello world");
+
+	free(result1);
+	free(result2);
+	free(result3);
+	free(result4);
+}
