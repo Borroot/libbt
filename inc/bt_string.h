@@ -1,5 +1,5 @@
-#ifndef BT_STRING_H
-#define BT_STRING_H
+#ifndef BT_STRING_H_
+#define BT_STRING_H_
 
 void    *bt_memset(void *, int, size_t);
 int      bt_memcmp(const void *, const void *, size_t);
@@ -45,4 +45,4 @@ int      bt_strnequ(const char *, const char *, size_t);
 //char    *bt_strtrim(const char *);
 //char   **bt_strsplit(const char *, const char);
 
-#endif
+#endif /* BT_STRING_H_ */

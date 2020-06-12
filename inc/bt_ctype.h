@@ -1,5 +1,5 @@
-#ifndef BT_CTYPE_H
-#define BT_CTYPE_H
+#ifndef BT_CTYPE_H_
+#define BT_CTYPE_H_
 
 int bt_isalnum(int);
 int bt_isalpha(int);
@@ -18,4 +18,4 @@ int bt_isxdigit(int);
 int bt_tolower(int);
 int bt_toupper(int);
 
-#endif
+#endif /* BT_CTYPE_H_ */

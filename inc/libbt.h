@@ -1,7 +1,7 @@
-#ifndef BT_LIBC_H
-#define BT_LIBC_H
+#ifndef LIBBT_H_
+#define LIBBT_H_
 
 #include "bt_ctype.h"
 #include "bt_string.h"
 
-#endif
+#endif /* LIBBT_H_ */
