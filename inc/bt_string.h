@@ -34,7 +34,7 @@ size_t   bt_strspn(const char *, const char *);
 size_t   bt_strcspn(const char *, const char *);
 
 char    *bt_strnew(size_t);
-//void     bt_strdel(char **);
+void     bt_strdel(char **);
 void     bt_strclr(char *);
 void     bt_striter(char *, void (*)(char *));
 void     bt_striteri(char *, void (*)(unsigned int, char *));

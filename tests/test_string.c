@@ -458,6 +458,13 @@ Test(string_extra, strnew)
 	free(src);
 }
 
+Test(string_extra, strdel)
+{
+	char *src = bt_strnew(100);
+	bt_strdel(&src);
+	cr_assert_null(src);
+}
+
 Test(string_extra, strclr)
 {
 	char s[] = "hello world";
