@@ -589,3 +589,23 @@ Test(string_extra, strjoin)
 	free(result2);
 	free(result3);
 }
+
+Test(string_extra, strtrim)
+{
+	char *result1 = bt_strtrim("hello world");
+	cr_assert_str_eq(result1, "hello world");
+
+	char *result2 = bt_strtrim(" \t \n  hello world");
+	cr_assert_str_eq(result2, "hello world");
+
+	char *result3 = bt_strtrim("hello world     \n");
+	cr_assert_str_eq(result3, "hello world");
+
+	char *result4 = bt_strtrim(" \t\n  hello world\n  \t\t  ");
+	cr_assert_str_eq(result4, "hello world");
+
+	free(result1);
+	free(result2);
+	free(result3);
+	free(result4);
+}
