@@ -474,8 +474,8 @@ Test(string_extra, strclr)
 	}
 }
 
-static void tmp1_tolower(char *c) { *c = (char)bt_tolower((int)*c); }
-static void tmp1_toupper(char *c) { *c = (char)bt_toupper((int)*c); }
+void tmp1_tolower(char *c) { *c = (char)bt_tolower((int)*c); }
+void tmp1_toupper(char *c) { *c = (char)bt_toupper((int)*c); }
 
 Test(string_extra, striter)
 {
@@ -495,7 +495,7 @@ Test(string_extra, striter)
 	cr_assert_str_eq(s2, "HELLO, WORLD! :)");
 }
 
-static void tmp2_toupper(unsigned int i, char *c)
+void tmp2_toupper(unsigned int i, char *c)
 { *c = i < 5 ? (char)bt_toupper((int)*c) : *c; }
 
 Test(string_extra, striteri)
@@ -506,8 +506,8 @@ Test(string_extra, striteri)
 	cr_assert_str_eq(s, "HELLO world");
 }
 
-static char tmp3_tolower(char c) { return (char)bt_tolower((int)c); }
-static char tmp3_toupper(char c) { return (char)bt_toupper((int)c); }
+char tmp3_tolower(char c) { return (char)bt_tolower((int)c); }
+char tmp3_toupper(char c) { return (char)bt_toupper((int)c); }
 
 Test(string_extra, strmap)
 {
@@ -525,7 +525,7 @@ Test(string_extra, strmap)
 	free(result3);
 }
 
-static char tmp4_toupper(unsigned int i, char c)
+char tmp4_toupper(unsigned int i, char c)
 { return i < 5 ? (char)bt_toupper((int)c) : c; }
 
 Test(string_extra, strmapi)
