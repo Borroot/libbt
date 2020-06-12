@@ -495,23 +495,45 @@ Test(string_extra, striter)
 	cr_assert_str_eq(s2, "HELLO, WORLD! :)");
 }
 
-static char tmp2_tolower(char c) { return (char)bt_tolower((int)c); }
-static char tmp2_toupper(char c) { return (char)bt_toupper((int)c); }
+static void tmp2_toupper(unsigned int i, char *c)
+{ *c = i < 5 ? (char)bt_toupper((int)*c) : *c; }
+
+Test(string_extra, striteri)
+{
+	char s[] = "hello world";
+
+	bt_striteri(s, tmp2_toupper);
+	cr_assert_str_eq(s, "HELLO world");
+}
+
+static char tmp3_tolower(char c) { return (char)bt_tolower((int)c); }
+static char tmp3_toupper(char c) { return (char)bt_toupper((int)c); }
 
 Test(string_extra, strmap)
 {
-	char *result1 = bt_strmap("HELLO WORLD", tmp2_tolower);
+	char *result1 = bt_strmap("HELLO WORLD", tmp3_tolower);
 	cr_assert_str_eq(result1, "hello world");
 
-	char *result2 = bt_strmap("hello world", tmp2_toupper);
+	char *result2 = bt_strmap("hello world", tmp3_toupper);
 	cr_assert_str_eq(result2, "HELLO WORLD");
 
-	char *result3 = bt_strmap("hello, world! :)", tmp2_toupper);
+	char *result3 = bt_strmap("hello, world! :)", tmp3_toupper);
 	cr_assert_str_eq(result3, "HELLO, WORLD! :)");
 
 	free(result1);
 	free(result2);
 	free(result3);
+}
+
+static char tmp4_toupper(unsigned int i, char c)
+{ return i < 5 ? (char)bt_toupper((int)c) : c; }
+
+Test(string_extra, strmapi)
+{
+	char *result1 = bt_strmapi("hello world", tmp4_toupper);
+	cr_assert_str_eq(result1, "HELLO world");
+
+	free(result1);
 }
 
 Test(string_extra, strequ)
