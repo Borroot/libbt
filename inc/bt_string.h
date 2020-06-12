@@ -9,7 +9,7 @@ void    *bt_memmove(void *, const void *, size_t);
 void    *bt_memcpy(void *, const void *, size_t);
 void    *bt_memccpy(void *, const void *, int, size_t);
 
-//void    *bt_memalloc(size_t);
+void    *bt_memalloc(size_t);
 //void     bt_memdel(void *);
 
 size_t   bt_strlen(const char *);

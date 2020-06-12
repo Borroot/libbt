@@ -85,6 +85,16 @@ Test(string, memccpy)
 	cr_assert_eq(bt_memccpy(dst, src, 'l', 2), NULL);
 }
 
+Test(string_extra, memalloc)
+{
+	char *src = bt_memalloc(100);
+
+	for (int i = 0; i < 100; i++) {
+		cr_assert_eq(src[i], '\0');
+	}
+	free(src);
+}
+
 Test(string, strlen)
 {
 	cr_assert(bt_strlen("hello world") == 11);
