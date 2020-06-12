@@ -573,3 +573,19 @@ Test(string_extra, strsub)
 	free(result3);
 	free(result4);
 }
+
+Test(string_extra, strjoin)
+{
+	char *result1 = bt_strjoin("hello ", "world");
+	cr_assert_str_eq(result1, "hello world");
+
+	char *result2 = bt_strjoin("", "hello");
+	cr_assert_str_eq(result2, "hello");
+
+	char *result3 = bt_strjoin("hello", "");
+	cr_assert_str_eq(result3, "hello");
+
+	free(result1);
+	free(result2);
+	free(result3);
+}
