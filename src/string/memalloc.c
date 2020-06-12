@@ -4,9 +4,9 @@
 
 void *bt_memalloc(size_t size)
 {
-	void *p = malloc(size);
+	void *s = malloc(size);
 
-	if (p != NULL)
-		bt_memset(p, '\0', size);
-	return p;
+	if (s != NULL)
+		bt_memset(s, '\0', size);
+	return s;
 }

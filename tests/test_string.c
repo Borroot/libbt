@@ -30,12 +30,12 @@ Test(string, memchr)
 {
 	const char s[] = "hello world";
 
-	cr_assert_eq(bt_memchr(s, 'h', 0), NULL);
+	cr_assert_null(bt_memchr(s, 'h', 0));
 	cr_assert_eq(bt_memchr(s, 'h', 11), s);
 	cr_assert_eq(bt_memchr(s, 'l', 11), s + 2);
 	cr_assert_eq(bt_memchr(s, 'd', 11), s + 10);
 	cr_assert_eq(bt_memchr(s, '\0', 12), s + 11);
-	cr_assert_eq(bt_memchr(s, 'x', 11), NULL);
+	cr_assert_null(bt_memchr(s, 'x', 11));
 }
 
 Test(string, memrchr)
@@ -46,7 +46,7 @@ Test(string, memrchr)
 	cr_assert_eq(bt_memrchr(s, 'l', 11), s + 9);
 	cr_assert_eq(bt_memrchr(s, 'd', 11), s + 10);
 	cr_assert_eq(bt_memrchr(s, '\0', 12), s + 11);
-	cr_assert_eq(bt_memrchr(s, 'x', 11), NULL);
+	cr_assert_null(bt_memrchr(s, 'x', 11));
 }
 
 Test(string, memmove)
@@ -82,7 +82,7 @@ Test(string, memccpy)
 	cr_assert_str_eq(dst, src);
 
 	cr_assert_eq(bt_memccpy(dst, src, 'l', 11), dst + 3);
-	cr_assert_eq(bt_memccpy(dst, src, 'l', 2), NULL);
+	cr_assert_null(bt_memccpy(dst, src, 'l', 2));
 }
 
 Test(string_extra, memalloc)
@@ -93,6 +93,13 @@ Test(string_extra, memalloc)
 		cr_assert_eq(src[i], '\0');
 	}
 	free(src);
+}
+
+Test(string_extra, memdel)
+{
+	void *src = bt_memalloc(100);
+	bt_memdel(&src);
+	cr_assert_null(src);
 }
 
 Test(string, strlen)
@@ -301,7 +308,7 @@ Test(string, strchr)
 	cr_assert_eq(bt_strchr(s, 'l'), s + 2);
 	cr_assert_eq(bt_strchr(s, 'd'), s + 10);
 	cr_assert_eq(bt_strchr(s, '\0'), s + 11);
-	cr_assert_eq(bt_strchr(s, 'x'), NULL);
+	cr_assert_null(bt_strchr(s, 'x'));
 }
 
 Test(string, strrchr)
@@ -312,7 +319,7 @@ Test(string, strrchr)
 	cr_assert_eq(bt_strrchr(s, 'l'), s + 9);
 	cr_assert_eq(bt_strrchr(s, 'd'), s + 10);
 	cr_assert_eq(bt_strrchr(s, '\0'), s + 11);
-	cr_assert_eq(bt_strrchr(s, 'x'), NULL);
+	cr_assert_null(bt_strrchr(s, 'x'));
 }
 
 Test(string, strchrnul)
@@ -393,8 +400,8 @@ Test(string, strpbrk)
 
 	cr_assert_eq(bt_strpbrk(s, "le"), s + 1);
 	cr_assert_eq(bt_strpbrk(s, "r"), s + 8);
-	cr_assert_eq(bt_strpbrk(s, ""), NULL);
-	cr_assert_eq(bt_strpbrk(s, "x"), NULL);
+	cr_assert_null(bt_strpbrk(s, ""));
+	cr_assert_null(bt_strpbrk(s, "x"));
 }
 
 Test(string, strstr)
@@ -405,8 +412,8 @@ Test(string, strstr)
 	cr_assert_eq(bt_strstr(s, "llo"), s + 2);
 	cr_assert_eq(bt_strstr(s, "d"), s + 10);
 	cr_assert_eq(bt_strstr(s, ""), s);
-	cr_assert_eq(bt_strstr(s, "x"), NULL);
-	cr_assert_eq(bt_strstr(s, "worlds"), NULL);
+	cr_assert_null(bt_strstr(s, "x"));
+	cr_assert_null(bt_strstr(s, "worlds"));
 }
 
 Test(string, strcasestr)
@@ -417,8 +424,8 @@ Test(string, strcasestr)
 	cr_assert_eq(bt_strcasestr(s, "lLo"), s + 2);
 	cr_assert_eq(bt_strcasestr(s, "D"), s + 10);
 	cr_assert_eq(bt_strcasestr(s, ""), s);
-	cr_assert_eq(bt_strcasestr(s, "x"), NULL);
-	cr_assert_eq(bt_strcasestr(s, "worLds"), NULL);
+	cr_assert_null(bt_strcasestr(s, "x"));
+	cr_assert_null(bt_strcasestr(s, "worLds"));
 }
 
 Test(string, strspn)
