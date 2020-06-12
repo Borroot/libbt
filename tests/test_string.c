@@ -609,3 +609,39 @@ Test(string_extra, strtrim)
 	free(result3);
 	free(result4);
 }
+
+Test(string_extra, strsplit)
+{
+	char **result1 = bt_strsplit("*hello*world***!!!!*", '*');
+	cr_assert_str_eq(result1[0], "hello");
+	cr_assert_str_eq(result1[1], "world");
+	cr_assert_str_eq(result1[2], "!!!!");
+
+	char **result2 = bt_strsplit("hello*world***!!!!*", '*');
+	cr_assert_str_eq(result2[0], "hello");
+	cr_assert_str_eq(result2[1], "world");
+	cr_assert_str_eq(result2[2], "!!!!");
+
+	char **result3 = bt_strsplit("*hello*world***!!!!", '*');
+	cr_assert_str_eq(result3[0], "hello");
+	cr_assert_str_eq(result3[1], "world");
+	cr_assert_str_eq(result3[2], "!!!!");
+
+	char **result4 = bt_strsplit("*****hello*world***!!!!", '*');
+	cr_assert_str_eq(result4[0], "hello");
+	cr_assert_str_eq(result4[1], "world");
+	cr_assert_str_eq(result4[2], "!!!!");
+
+	char **result5 = bt_strsplit("hello world", '*');
+	cr_assert_str_eq(result5[0], "hello world");
+
+	char **result6 = bt_strsplit("", '*');
+	cr_assert_str_eq(result6[0], "");
+
+	free(result1);
+	free(result2);
+	free(result3);
+	free(result4);
+	free(result5);
+	free(result6);
+}
