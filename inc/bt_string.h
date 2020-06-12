@@ -45,6 +45,6 @@ int      bt_strnequ(const char *, const char *, size_t);
 char    *bt_strsub(const char *, unsigned int, size_t);
 char    *bt_strjoin(const char *, const char *);
 char    *bt_strtrim(const char *);
-//char   **bt_strsplit(const char *, const char);
+char   **bt_strsplit(const char *, const char);
 
 #endif /* BT_STRING_H_ */

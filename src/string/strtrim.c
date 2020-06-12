@@ -9,22 +9,14 @@ static int istrim(int c)
 
 char *bt_strtrim(const char *s)
 {
-	size_t i;
+	size_t start;
+	size_t end;
 
-	for (i = 0; istrim(s[i]) && s[i] != '\0'; i++)
+	for (start = 0; istrim(s[start]) && s[start] != '\0'; start++)
 		;
-	size_t start = i;
-
-	size_t len = bt_strlen(s + i);
-	for (i = len - 1; i > start && istrim(s[start + i]); i--)
+	size_t len = bt_strlen(s + start);
+	for (end = start + len - 1; end > start && istrim(s[end]); end--)
 		;
-	size_t end = start + i;
 
-	char *trim = (char *)malloc(end - start + 1);
-	if (trim != NULL) {
-		for (i = start; i <= end; i++)
-			trim[i - start] = s[i];
-		trim[len] = '\0';
-	}
-	return trim;
+	return bt_strsub(s, start, end - start + 1);
 }
