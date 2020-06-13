@@ -1,7 +1,7 @@
 #ifndef BT_STDIO_H_
 #define BT_STDIO_H_
 
-//void bt_putchar(char);
+void bt_putchar(char);
 //void bt_putstr(const char *);
 //void bt_putendl(const char *);
 //void bt_putdigit(int);
