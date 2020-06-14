@@ -13,12 +13,13 @@ char *bt_itoa(int n)
 
 	char *s = (char *)malloc(len + 1);
 	if (s != NULL) {
-		if (minus) {
-			n *= -1;
+		if (minus)
 			s[0] = '-';
-		}
+		else
+			n *= -1;
+
 		for (size_t i = 0; i < len - minus; i++) {
-			s[len - i - 1] = n % 10 + '0';
+			s[len - i - 1] = -1 * (n % 10) + '0';
 			n /= 10;
 		}
 		s[len] = '\0';
