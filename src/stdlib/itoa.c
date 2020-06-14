@@ -3,11 +3,10 @@
 
 char *bt_itoa(int n)
 {
-	int minus = n < 0 ? 1 : 0;
-	int tmp = n;
+	char minus = n < 0 ? 1 : 0;
 	size_t len = 0;
 
-	for ( ; tmp != 0; tmp /= 10, len++)
+	for (int tmp = n; tmp != 0; tmp /= 10, len++)
 		;
 	len = n == 0 ? 1 : len + minus;
 
@@ -18,9 +17,9 @@ char *bt_itoa(int n)
 		else
 			n *= -1;
 
-		for (size_t i = 0; i < len - minus; i++) {
-			s[len - i - 1] = -1 * (n % 10) + '0';
-			n /= 10;
+		for (size_t i = 0; i < len - minus; n /= 10, i++) {
+			char digit = -1 * (n % 10);
+			s[len - i - 1] = digit + '0';
 		}
 		s[len] = '\0';
 	}
