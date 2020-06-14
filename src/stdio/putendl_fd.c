@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include "bt_stdio.h"
 #include "bt_string.h"
 
 void bt_putendl_fd(const char *s, int fd)
