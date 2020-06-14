@@ -10,5 +10,5 @@ char *bt_strrchr(const char *s, int c)
 
 	if (found)
 		return (char *)s + last;
-	return (c == '\0') ? (char *)s + i : NULL;
+	return c == '\0' ? (char *)s + i : NULL;
 }

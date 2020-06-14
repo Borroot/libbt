@@ -8,5 +8,5 @@ char *bt_strchr(const char *s, int c)
 		if (s[i] == c)
 			return (char *)s + i;
 
-	return (c == '\0') ? (char *)s + i : NULL;
+	return c == '\0' ? (char *)s + i : NULL;
 }
