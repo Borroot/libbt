@@ -50,14 +50,14 @@ char   **bt_strsplit(const char *, char);
 
 /* String functions from other sources, mostly Python's standard library. */
 int      bt_stris(const char *, int (*)(char));
-int      bt_stristitle(const char *);
-char    *bt_strtoupper(char *);
-char    *bt_strtolower(char *);
-char    *bt_strtotitle(char *);
-char    *bt_strtocapital(char *);
-char    *bt_strswapcase(char *);
-char    *bt_strexpandtabs(char *);
-int      bt_strcenter(const char *);
+//int      bt_stristitle(const char *);
+//char    *bt_strtoupper(char *);
+//char    *bt_strtolower(char *);
+//char    *bt_strtotitle(char *);
+//char    *bt_strtocapital(char *);
+//char    *bt_strswapcase(char *);
+//char    *bt_strexpandtabs(char *);
+//int      bt_strcenter(const char *);
 char    *bt_strstrip(const char *);
 char    *bt_strlstrip(const char *);
 char    *bt_strrstrip(const char *);
