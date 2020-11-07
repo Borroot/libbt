@@ -645,3 +645,10 @@ Test(string_extra, strsplit)
 	free(result5);
 	free(result6);
 }
+
+Test(string_extra, stris)
+{
+	cr_assert(bt_stris("hello", bt_islower_char));
+	cr_assert(bt_stris("", bt_isupper_char));
+	cr_assert_not(bt_stris("hello", bt_isupper_char));
+}

@@ -1,21 +1,26 @@
 #ifndef BT_CTYPE_H_
 #define BT_CTYPE_H_
 
-int bt_isalnum(int);
-int bt_isalpha(int);
-int bt_isascii(int);
-int bt_isblank(int);
-int bt_iscntrl(int);
-int bt_isdigit(int);
-int bt_isgraph(int);
-int bt_islower(int);
-int bt_isprint(int);
-int bt_ispunct(int);
-int bt_isspace(int);
-int bt_isupper(int);
-int bt_isxdigit(int);
+/* Create a variant for every ctype function with a 'char' argument. */
+#define FUNCTIONS(fname)    \
+	int fname(int);         \
+	int fname##_char(char); \
 
-int bt_tolower(int);
-int bt_toupper(int);
+FUNCTIONS(bt_isalnum)
+FUNCTIONS(bt_isalpha)
+FUNCTIONS(bt_isascii)
+FUNCTIONS(bt_isblank)
+FUNCTIONS(bt_iscntrl)
+FUNCTIONS(bt_isdigit)
+FUNCTIONS(bt_isgraph)
+FUNCTIONS(bt_islower)
+FUNCTIONS(bt_isprint)
+FUNCTIONS(bt_ispunct)
+FUNCTIONS(bt_isspace)
+FUNCTIONS(bt_isupper)
+FUNCTIONS(bt_isxdigit)
+
+FUNCTIONS(bt_tolower)
+FUNCTIONS(bt_toupper)
 
 #endif /* BT_CTYPE_H_ */

@@ -47,4 +47,6 @@ char    *bt_strjoin(const char *, const char *);
 char    *bt_strtrim(const char *);
 char   **bt_strsplit(const char *, char);
 
+int      bt_stris(const char *, int (*)(char));
+
 #endif /* BT_STRING_H_ */
