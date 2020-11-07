@@ -17,6 +17,7 @@ FUNCTIONS(bt_islower)
 FUNCTIONS(bt_isprint)
 FUNCTIONS(bt_ispunct)
 FUNCTIONS(bt_isspace)
+FUNCTIONS(bt_isstrip)
 FUNCTIONS(bt_isupper)
 FUNCTIONS(bt_isxdigit)
 

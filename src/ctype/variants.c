@@ -14,6 +14,7 @@ VARIANT(bt_islower)
 VARIANT(bt_isprint)
 VARIANT(bt_ispunct)
 VARIANT(bt_isspace)
+VARIANT(bt_isstrip)
 VARIANT(bt_isupper)
 VARIANT(bt_isxdigit)
 

@@ -3,7 +3,7 @@
 #include <bt_ctype.h>
 #include <bt_string.h>
 
-Test(string, memset)
+Test(string_basic, memset)
 {
 	char *s = (char *)malloc(10);
 
@@ -16,7 +16,7 @@ Test(string, memset)
 	free(s);
 }
 
-Test(string, memcmp)
+Test(string_basic, memcmp)
 {
 	cr_assert_eq(bt_memcmp("ABC", "ABC", 3), 0);
 	cr_assert_eq(bt_memcmp("ABC", "AB", 3), 67);
@@ -26,7 +26,7 @@ Test(string, memcmp)
 	cr_assert_eq(bt_memcmp("ABC", "CBA", 0), 0);
 }
 
-Test(string, memchr)
+Test(string_basic, memchr)
 {
 	const char s[] = "hello world";
 
@@ -38,7 +38,7 @@ Test(string, memchr)
 	cr_assert_null(bt_memchr(s, 'x', 11));
 }
 
-Test(string, memrchr)
+Test(string_basic, memrchr)
 {
 	const char s[] = "hello world";
 
@@ -49,7 +49,7 @@ Test(string, memrchr)
 	cr_assert_null(bt_memrchr(s, 'x', 11));
 }
 
-Test(string, memmove)
+Test(string_basic, memmove)
 {
 	char src[] = "hello world";
 	char dst[12];
@@ -61,7 +61,7 @@ Test(string, memmove)
 	cr_assert_str_eq(src, "hehelloorld");
 }
 
-Test(string, memcpy)
+Test(string_basic, memcpy)
 {
 	char src[] = "hello world";
 	char dst[12];
@@ -73,7 +73,7 @@ Test(string, memcpy)
 	cr_assert_str_eq(src, "hello hello");
 }
 
-Test(string, memccpy)
+Test(string_basic, memccpy)
 {
 	char src[] = "hello world";
 	char dst[12];
@@ -85,31 +85,14 @@ Test(string, memccpy)
 	cr_assert_null(bt_memccpy(dst, src, 'l', 2));
 }
 
-Test(string_extra, memalloc)
-{
-	char *src = bt_memalloc(100);
-
-	for (int i = 0; i < 100; i++) {
-		cr_assert_eq(src[i], '\0');
-	}
-	free(src);
-}
-
-Test(string_extra, memdel)
-{
-	void *src = bt_memalloc(100);
-	bt_memdel(&src);
-	cr_assert_null(src);
-}
-
-Test(string, strlen)
+Test(string_basic, strlen)
 {
 	cr_assert(bt_strlen("hello world") == 11);
 	cr_assert(bt_strlen("hello\0world") == 5);
 	cr_assert(bt_strlen("") == 0);
 }
 
-Test(string, strnlen)
+Test(string_basic, strnlen)
 {
 	cr_assert(bt_strnlen("hello world", 20) == 11);
 	cr_assert(bt_strnlen("hello\0world", 20) == 5);
@@ -120,7 +103,7 @@ Test(string, strnlen)
 	cr_assert(bt_strnlen("", 0) == 0);
 }
 
-Test(string, strcpy)
+Test(string_basic, strcpy)
 {
 	char *result;
 
@@ -148,7 +131,7 @@ Test(string, strcpy)
 	cr_assert_str_eq(result, dst4);
 }
 
-Test(string, strncpy)
+Test(string_basic, strncpy)
 {
 	char *result;
 
@@ -181,7 +164,7 @@ Test(string, strncpy)
 	cr_assert_str_eq(result, dst5);
 }
 
-Test(string, stpcpy)
+Test(string_basic, stpcpy)
 {
 	char *result;
 
@@ -209,7 +192,7 @@ Test(string, stpcpy)
 	cr_assert_str_eq(result, dst4 + 7);
 }
 
-Test(string, stpncpy)
+Test(string_basic, stpncpy)
 {
 	char *result;
 
@@ -242,7 +225,7 @@ Test(string, stpncpy)
 	cr_assert_str_eq(result, dst5);
 }
 
-Test(string, strcat)
+Test(string_basic, strcat)
 {
 	char *result;
 
@@ -265,7 +248,7 @@ Test(string, strcat)
 	cr_assert_str_eq(result, "hello");
 }
 
-Test(string, strncat)
+Test(string_basic, strncat)
 {
 	char *result;
 
@@ -300,7 +283,7 @@ Test(string, strncat)
 	cr_assert_str_eq(result, "hello");
 }
 
-Test(string, strchr)
+Test(string_basic, strchr)
 {
 	const char s[] = "hello world";
 
@@ -311,7 +294,7 @@ Test(string, strchr)
 	cr_assert_null(bt_strchr(s, 'x'));
 }
 
-Test(string, strrchr)
+Test(string_basic, strrchr)
 {
 	const char s[] = "hello world";
 
@@ -322,7 +305,7 @@ Test(string, strrchr)
 	cr_assert_null(bt_strrchr(s, 'x'));
 }
 
-Test(string, strchrnul)
+Test(string_basic, strchrnul)
 {
 	const char s[] = "hello world";
 
@@ -333,7 +316,7 @@ Test(string, strchrnul)
 	cr_assert_eq(bt_strchrnul(s, 'x'), s + 11);
 }
 
-Test(string, strcmp)
+Test(string_basic, strcmp)
 {
 	cr_assert_eq(bt_strcmp("ABC", "ABC"), 0);
 	cr_assert_eq(bt_strcmp("ABC", "AB"), 67);
@@ -341,7 +324,7 @@ Test(string, strcmp)
 	cr_assert_eq(bt_strcmp("ABJ", "ABC"), 7);
 }
 
-Test(string, strncmp)
+Test(string_basic, strncmp)
 {
 	cr_assert_eq(bt_strncmp("ABC", "ABC", 3), 0);
 	cr_assert_eq(bt_strncmp("ABC", "AB", 3), 67);
@@ -351,7 +334,7 @@ Test(string, strncmp)
 	cr_assert_eq(bt_strncmp("ABC", "CBA", 0), 0);
 }
 
-Test(string, strdup)
+Test(string_basic, strdup)
 {
 	char *result;
 
@@ -370,7 +353,7 @@ Test(string, strdup)
 	free(result);
 }
 
-Test(string, strndup)
+Test(string_basic, strndup)
 {
 	char *result;
 
@@ -394,7 +377,7 @@ Test(string, strndup)
 	free(result);
 }
 
-Test(string, strpbrk)
+Test(string_basic, strpbrk)
 {
 	const char s[] = "hello world";
 
@@ -404,7 +387,7 @@ Test(string, strpbrk)
 	cr_assert_null(bt_strpbrk(s, "x"));
 }
 
-Test(string, strstr)
+Test(string_basic, strstr)
 {
 	const char s[] = "hello world";
 
@@ -416,7 +399,7 @@ Test(string, strstr)
 	cr_assert_null(bt_strstr(s, "worlds"));
 }
 
-Test(string, strcasestr)
+Test(string_basic, strcasestr)
 {
 	const char s[] = "heLlO WorLD";
 
@@ -428,7 +411,7 @@ Test(string, strcasestr)
 	cr_assert_null(bt_strcasestr(s, "worLds"));
 }
 
-Test(string, strspn)
+Test(string_basic, strspn)
 {
 	cr_assert_eq(bt_strspn("hello world", ""), 0);
 	cr_assert_eq(bt_strspn("hello world", "helo"), 5);
@@ -438,7 +421,7 @@ Test(string, strspn)
 	cr_assert_eq(bt_strspn("hello world", "H "), 0);
 }
 
-Test(string, strcspn)
+Test(string_basic, strcspn)
 {
 	cr_assert_eq(bt_strcspn("hello world", ""), 11);
 	cr_assert_eq(bt_strcspn("hello world", "h"), 0);
@@ -446,209 +429,4 @@ Test(string, strcspn)
 	cr_assert_eq(bt_strcspn("hello world", "xyz"), 11);
 	cr_assert_eq(bt_strcspn("hello world", " "), 5);
 	cr_assert_eq(bt_strcspn("hello world", "\0"), 11);
-}
-
-Test(string_extra, strnew)
-{
-	char *src = bt_strnew(100);
-
-	for (int i = 0; i < 100; i++) {
-		cr_assert_eq(src[i], '\0');
-	}
-	free(src);
-}
-
-Test(string_extra, strdel)
-{
-	char *src = bt_strnew(100);
-	bt_strdel(&src);
-	cr_assert_null(src);
-}
-
-Test(string_extra, strclr)
-{
-	char s[] = "hello world";
-	bt_strclr(s);
-	for (int i = 0; i < (int)sizeof s; i++) {
-		cr_assert_eq(s[i], '\0');
-	}
-}
-
-void tmp1_tolower(char *c) { *c = (char)bt_tolower((int)*c); }
-void tmp1_toupper(char *c) { *c = (char)bt_toupper((int)*c); }
-
-Test(string_extra, striter)
-{
-	char s1[] = "hello world";
-	char s2[] = "hello, world! :)";
-
-	bt_striter(s1, tmp1_toupper);
-	cr_assert_str_eq(s1, "HELLO WORLD");
-
-	bt_striter(s1, tmp1_tolower);
-	cr_assert_str_eq(s1, "hello world");
-
-	bt_striter(s1, tmp1_tolower);
-	cr_assert_str_eq(s1, "hello world");
-
-	bt_striter(s2, tmp1_toupper);
-	cr_assert_str_eq(s2, "HELLO, WORLD! :)");
-}
-
-void tmp2_toupper(unsigned int i, char *c)
-{ *c = i < 5 ? (char)bt_toupper((int)*c) : *c; }
-
-Test(string_extra, striteri)
-{
-	char s[] = "hello world";
-
-	bt_striteri(s, tmp2_toupper);
-	cr_assert_str_eq(s, "HELLO world");
-}
-
-char tmp3_tolower(char c) { return (char)bt_tolower((int)c); }
-char tmp3_toupper(char c) { return (char)bt_toupper((int)c); }
-
-Test(string_extra, strmap)
-{
-	char *result1 = bt_strmap("HELLO WORLD", tmp3_tolower);
-	cr_assert_str_eq(result1, "hello world");
-
-	char *result2 = bt_strmap("hello world", tmp3_toupper);
-	cr_assert_str_eq(result2, "HELLO WORLD");
-
-	char *result3 = bt_strmap("hello, world! :)", tmp3_toupper);
-	cr_assert_str_eq(result3, "HELLO, WORLD! :)");
-
-	free(result1);
-	free(result2);
-	free(result3);
-}
-
-char tmp4_toupper(unsigned int i, char c)
-{ return i < 5 ? (char)bt_toupper((int)c) : c; }
-
-Test(string_extra, strmapi)
-{
-	char *result1 = bt_strmapi("hello world", tmp4_toupper);
-	cr_assert_str_eq(result1, "HELLO world");
-
-	free(result1);
-}
-
-Test(string_extra, strequ)
-{
-	cr_assert_eq(bt_strequ("", ""), 1);
-	cr_assert_eq(bt_strequ("hello world", "hello world"), 1);
-	cr_assert_eq(bt_strequ("hello worlD", "hello world"), 0);
-}
-
-Test(string_extra, strnequ)
-{
-	cr_assert_eq(bt_strnequ("", "", 1), 1);
-	cr_assert_eq(bt_strnequ("", "", 0), 1);
-	cr_assert_eq(bt_strnequ("hello world", "hello world", 11), 1);
-	cr_assert_eq(bt_strnequ("hello worlD", "hello world", 11), 0);
-	cr_assert_eq(bt_strnequ("hello worlD", "hello world", 10), 1);
-}
-
-Test(string_extra, strsub)
-{
-	const char s[] = "hello world";
-
-	char *result1 = bt_strsub(s, 6, 5);
-	cr_assert_str_eq(result1, "world");
-
-	char *result2 = bt_strsub(s, 6, 4);
-	cr_assert_str_eq(result2, "worl");
-
-	char *result3 = bt_strsub(s, 6, 0);
-	cr_assert_str_eq(result3, "");
-
-	char *result4 = bt_strsub(s, 0, 11);
-	cr_assert_str_eq(result4, "hello world");
-
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-}
-
-Test(string_extra, strjoin)
-{
-	char *result1 = bt_strjoin("hello ", "world");
-	cr_assert_str_eq(result1, "hello world");
-
-	char *result2 = bt_strjoin("", "hello");
-	cr_assert_str_eq(result2, "hello");
-
-	char *result3 = bt_strjoin("hello", "");
-	cr_assert_str_eq(result3, "hello");
-
-	free(result1);
-	free(result2);
-	free(result3);
-}
-
-Test(string_extra, strtrim)
-{
-	char *result1 = bt_strtrim("hello world");
-	cr_assert_str_eq(result1, "hello world");
-
-	char *result2 = bt_strtrim(" \t \n  hello world");
-	cr_assert_str_eq(result2, "hello world");
-
-	char *result3 = bt_strtrim("hello world     \n");
-	cr_assert_str_eq(result3, "hello world");
-
-	char *result4 = bt_strtrim(" \t\n  hello world\n  \t\t  ");
-	cr_assert_str_eq(result4, "hello world");
-
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-}
-
-Test(string_extra, strsplit)
-{
-	char **result1 = bt_strsplit("*hello*world***!!!!*", '*');
-	cr_assert_str_eq(result1[0], "hello");
-	cr_assert_str_eq(result1[1], "world");
-	cr_assert_str_eq(result1[2], "!!!!");
-
-	char **result2 = bt_strsplit("hello*world***!!!!*", '*');
-	cr_assert_str_eq(result2[0], "hello");
-	cr_assert_str_eq(result2[1], "world");
-	cr_assert_str_eq(result2[2], "!!!!");
-
-	char **result3 = bt_strsplit("*hello*world***!!!!", '*');
-	cr_assert_str_eq(result3[0], "hello");
-	cr_assert_str_eq(result3[1], "world");
-	cr_assert_str_eq(result3[2], "!!!!");
-
-	char **result4 = bt_strsplit("*****hello*world***!!!!", '*');
-	cr_assert_str_eq(result4[0], "hello");
-	cr_assert_str_eq(result4[1], "world");
-	cr_assert_str_eq(result4[2], "!!!!");
-
-	char **result5 = bt_strsplit("hello world", '*');
-	cr_assert_str_eq(result5[0], "hello world");
-
-	char **result6 = bt_strsplit("", '*');
-	cr_assert_str_eq(result6[0], "");
-
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-	free(result5);
-	free(result6);
-}
-
-Test(string_extra, stris)
-{
-	cr_assert(bt_stris("hello", bt_islower_char));
-	cr_assert(bt_stris("", bt_isupper_char));
-	cr_assert_not(bt_stris("hello", bt_isupper_char));
 }

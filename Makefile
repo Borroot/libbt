@@ -6,7 +6,7 @@ OBJ_DIR   = obj
 INC_DIR   = inc
 TST_DIR   = tests
 
-BIN_SRC_FILES = $(wildcard $(SRC_DIR)/*/*.c)
+BIN_SRC_FILES = $(shell find $(SRC_DIR) -type f -name '*.c')
 BIN_OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(BIN_SRC_FILES))
 BIN_INC_FILES = $(wildcard $(INC_DIR)/*.h)
 
