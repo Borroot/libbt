@@ -19,3 +19,12 @@ Test(stdlib, itoa)
 	sprintf(s, "%d", INT_MIN);
 	cr_assert_str_eq(bt_itoa(INT_MIN), s);
 }
+
+Test(stdlib, freeall)
+{
+	void *a = malloc(5);
+	void *b = malloc(5);
+	void *c = malloc(5);
+
+	bt_freeall(3, a, b, c);
+}

@@ -1,6 +1,7 @@
 #include <criterion/criterion.h>
 #include <stddef.h>
 #include <bt_ctype.h>
+#include <bt_stdlib.h>
 #include <bt_string.h>
 
 Test(string_bonus, memalloc)
@@ -78,23 +79,18 @@ Test(string_bonus, striteri)
 	cr_assert_str_eq(s, "HELLO world");
 }
 
-char tmp3_tolower(char c) { return (char)bt_tolower((int)c); }
-char tmp3_toupper(char c) { return (char)bt_toupper((int)c); }
-
 Test(string_bonus, strmap)
 {
-	char *result1 = bt_strmap("HELLO WORLD", tmp3_tolower);
+	char *result1 = bt_strmap("HELLO WORLD", bt_tolower_chars);
 	cr_assert_str_eq(result1, "hello world");
 
-	char *result2 = bt_strmap("hello world", tmp3_toupper);
+	char *result2 = bt_strmap("hello world", bt_toupper_chars);
 	cr_assert_str_eq(result2, "HELLO WORLD");
 
-	char *result3 = bt_strmap("hello, world! :)", tmp3_toupper);
+	char *result3 = bt_strmap("hello, world! :)", bt_toupper_chars);
 	cr_assert_str_eq(result3, "HELLO, WORLD! :)");
 
-	free(result1);
-	free(result2);
-	free(result3);
+	bt_freeall(3, result1, result2, result3);
 }
 
 char tmp4_toupper(unsigned int i, char c)
@@ -140,10 +136,7 @@ Test(string_bonus, strsub)
 	char *result4 = bt_strsub(s, 0, 11);
 	cr_assert_str_eq(result4, "hello world");
 
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
+	bt_freeall(4, result1, result2, result3, result4);
 }
 
 Test(string_bonus, strjoin)
@@ -157,43 +150,36 @@ Test(string_bonus, strjoin)
 	char *result3 = bt_strjoin("hello", "");
 	cr_assert_str_eq(result3, "hello");
 
-	free(result1);
-	free(result2);
-	free(result3);
+	bt_freeall(3, result1, result2, result3);
 }
 
 Test(string_bonus, strsplit)
 {
-	char **result1 = bt_strsplit("*hello*world***!!!!*", '*');
-	cr_assert_str_eq(result1[0], "hello");
-	cr_assert_str_eq(result1[1], "world");
-	cr_assert_str_eq(result1[2], "!!!!");
+	char **r1 = bt_strsplit("*hello*world***!!!!*", '*');
+	cr_assert_str_eq(r1[0], "hello");
+	cr_assert_str_eq(r1[1], "world");
+	cr_assert_str_eq(r1[2], "!!!!");
 
-	char **result2 = bt_strsplit("hello*world***!!!!*", '*');
-	cr_assert_str_eq(result2[0], "hello");
-	cr_assert_str_eq(result2[1], "world");
-	cr_assert_str_eq(result2[2], "!!!!");
+	char **r2 = bt_strsplit("hello*world***!!!!*", '*');
+	cr_assert_str_eq(r2[0], "hello");
+	cr_assert_str_eq(r2[1], "world");
+	cr_assert_str_eq(r2[2], "!!!!");
 
-	char **result3 = bt_strsplit("*hello*world***!!!!", '*');
-	cr_assert_str_eq(result3[0], "hello");
-	cr_assert_str_eq(result3[1], "world");
-	cr_assert_str_eq(result3[2], "!!!!");
+	char **r3 = bt_strsplit("*hello*world***!!!!", '*');
+	cr_assert_str_eq(r3[0], "hello");
+	cr_assert_str_eq(r3[1], "world");
+	cr_assert_str_eq(r3[2], "!!!!");
 
-	char **result4 = bt_strsplit("*****hello*world***!!!!", '*');
-	cr_assert_str_eq(result4[0], "hello");
-	cr_assert_str_eq(result4[1], "world");
-	cr_assert_str_eq(result4[2], "!!!!");
+	char **r4 = bt_strsplit("*****hello*world***!!!!", '*');
+	cr_assert_str_eq(r4[0], "hello");
+	cr_assert_str_eq(r4[1], "world");
+	cr_assert_str_eq(r4[2], "!!!!");
 
-	char **result5 = bt_strsplit("hello world", '*');
-	cr_assert_str_eq(result5[0], "hello world");
+	char **r5 = bt_strsplit("hello world", '*');
+	cr_assert_str_eq(r5[0], "hello world");
 
-	char **result6 = bt_strsplit("", '*');
-	cr_assert_str_eq(result6[0], "");
+	char **r6 = bt_strsplit("", '*');
+	cr_assert_str_eq(r6[0], "");
 
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-	free(result5);
-	free(result6);
+	bt_freeall(6, r1, r2, r3, r4, r5, r6);
 }

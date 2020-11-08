@@ -1,6 +1,7 @@
 #include <criterion/criterion.h>
 #include <stddef.h>
 #include <bt_ctype.h>
+#include <bt_stdlib.h>
 #include <bt_string.h>
 
 Test(string_extra, strfunc)
@@ -125,13 +126,7 @@ Test(string_extra, expandtabs)
 	char *r7 = bt_strexpandtabs("\ta\tb\t\t", 0);
 	cr_assert_str_eq(r7, "ab");
 
-	free(r1);
-	free(r2);
-	free(r3);
-	free(r4);
-	free(r5);
-	free(r6);
-	free(r7);
+	bt_freeall(7, r1, r2, r3, r4, r5, r6, r7);
 }
 
 Test(string_extra, strcenter)
@@ -151,13 +146,7 @@ Test(string_extra, strcenter)
 	char *r7 = bt_strcenter("hello", 10);
 	cr_assert_str_eq(r7, "  hello   ");
 
-	free(r1);
-	free(r2);
-	free(r3);
-	free(r4);
-	free(r5);
-	free(r6);
-	free(r7);
+	bt_freeall(7, r1, r2, r3, r4, r5, r6, r7);
 }
 
 Test(string_extra, strstrip)
@@ -177,11 +166,7 @@ Test(string_extra, strstrip)
 	char *result5 = bt_strstrip(" \t\n");
 	cr_assert_str_eq(result5, "");
 
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-	free(result5);
+	bt_freeall(5, result1, result2, result3, result4, result5);
 }
 
 Test(string_extra, strlstrip)
@@ -201,11 +186,7 @@ Test(string_extra, strlstrip)
 	char *result5 = bt_strlstrip(" \t\n");
 	cr_assert_str_eq(result5, "");
 
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-	free(result5);
+	bt_freeall(5, result1, result2, result3, result4, result5);
 }
 
 Test(string_extra, strrstrip)
@@ -225,9 +206,5 @@ Test(string_extra, strrstrip)
 	char *result5 = bt_strlstrip(" \t\n");
 	cr_assert_str_eq(result5, "");
 
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-	free(result5);
+	bt_freeall(5, result1, result2, result3, result4, result5);
 }

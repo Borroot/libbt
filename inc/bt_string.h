@@ -62,6 +62,5 @@ char    *bt_strcenter(const char *, size_t);
 char    *bt_strstrip(const char *);
 char    *bt_strlstrip(const char *);
 char    *bt_strrstrip(const char *);
-//void     bt_freeall(size_t, ...);
 
 #endif /* BT_STRING_H_ */
