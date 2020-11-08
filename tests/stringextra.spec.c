@@ -82,19 +82,14 @@ Test(string_extra, strcapital)
 {
 	char s1[] = "hello";
 	cr_assert_str_eq(bt_strcapital(s1), "Hello");
-
 	char s2[] = "";
 	cr_assert_str_eq(bt_strcapital(s2), "");
-
 	char s3[] = "1hi";
 	cr_assert_str_eq(bt_strcapital(s3), "1hi");
-
 	char s4[] = " hi";
 	cr_assert_str_eq(bt_strcapital(s4), " hi");
-
 	char s5[] = "\thi";
 	cr_assert_str_eq(bt_strcapital(s5), "\thi");
-
 	char s6[] = "HI";
 	cr_assert_str_eq(bt_strcapital(s6), "HI");
 }
@@ -103,18 +98,64 @@ Test(string_extra, strswapcase)
 {
 	char s1[] = "hello";
 	cr_assert_str_eq(bt_strswapcase(s1), "HELLO");
-
 	char s2[] = "";
 	cr_assert_str_eq(bt_strswapcase(s2), "");
-
 	char s3[] = "HELLO";
 	cr_assert_str_eq(bt_strswapcase(s3), "hello");
-
 	char s4[] = "123hi123";
 	cr_assert_str_eq(bt_strswapcase(s4), "123HI123");
-
 	char s5[] = "heLLoo";
 	cr_assert_str_eq(bt_strswapcase(s5), "HEllOO");
+}
+
+Test(string_extra, strcenter)
+{
+	char *r1 = bt_strcenter("hello", 0);
+	cr_assert_str_eq(r1, "hello");
+	char *r2 = bt_strcenter("hello", 3);
+	cr_assert_str_eq(r2, "hello");
+	char *r3 = bt_strcenter("hello", 5);
+	cr_assert_str_eq(r3, "hello");
+	char *r4 = bt_strcenter("hello", 6);
+	cr_assert_str_eq(r4, "hello ");
+	char *r5 = bt_strcenter(" hello ", 7);
+	cr_assert_str_eq(r5, " hello ");
+	char *r6 = bt_strcenter("hello world", 15);
+	cr_assert_str_eq(r6, "  hello world  ");
+	char *r7 = bt_strcenter("hello", 10);
+	cr_assert_str_eq(r7, "  hello   ");
+
+	free(r1);
+	free(r2);
+	free(r3);
+	free(r4);
+	free(r5);
+	free(r6);
+	free(r7);
+}
+
+Test(string_extra, strstrip)
+{
+	char *result1 = bt_strstrip("hello world");
+	cr_assert_str_eq(result1, "hello world");
+
+	char *result2 = bt_strstrip(" \t \n  hello world");
+	cr_assert_str_eq(result2, "hello world");
+
+	char *result3 = bt_strstrip("hello world     \n");
+	cr_assert_str_eq(result3, "hello world");
+
+	char *result4 = bt_strstrip(" \t\n  hello world\n  \t\t  ");
+	cr_assert_str_eq(result4, "hello world");
+
+	char *result5 = bt_strstrip(" \t\n");
+	cr_assert_str_eq(result5, "");
+
+	free(result1);
+	free(result2);
+	free(result3);
+	free(result4);
+	free(result5);
 }
 
 Test(string_extra, strlstrip)
@@ -156,30 +197,6 @@ Test(string_extra, strrstrip)
 	cr_assert_str_eq(result4, "hello world");
 
 	char *result5 = bt_strlstrip(" \t\n");
-	cr_assert_str_eq(result5, "");
-
-	free(result1);
-	free(result2);
-	free(result3);
-	free(result4);
-	free(result5);
-}
-
-Test(string_extra, strstrip)
-{
-	char *result1 = bt_strstrip("hello world");
-	cr_assert_str_eq(result1, "hello world");
-
-	char *result2 = bt_strstrip(" \t \n  hello world");
-	cr_assert_str_eq(result2, "hello world");
-
-	char *result3 = bt_strstrip("hello world     \n");
-	cr_assert_str_eq(result3, "hello world");
-
-	char *result4 = bt_strstrip(" \t\n  hello world\n  \t\t  ");
-	cr_assert_str_eq(result4, "hello world");
-
-	char *result5 = bt_strstrip(" \t\n");
 	cr_assert_str_eq(result5, "");
 
 	free(result1);
