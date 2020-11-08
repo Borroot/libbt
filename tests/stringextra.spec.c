@@ -32,6 +32,24 @@ Test(string_extra, strtocapital)
 	cr_assert_str_eq(bt_strtocapital(s6), "HI");
 }
 
+Test(string_extra, strswapcase)
+{
+	char s1[] = "hello";
+	cr_assert_str_eq(bt_strswapcase(s1), "HELLO");
+
+	char s2[] = "";
+	cr_assert_str_eq(bt_strswapcase(s2), "");
+
+	char s3[] = "HELLO";
+	cr_assert_str_eq(bt_strswapcase(s3), "hello");
+
+	char s4[] = "123hi123";
+	cr_assert_str_eq(bt_strswapcase(s4), "123HI123");
+
+	char s5[] = "heLLoo";
+	cr_assert_str_eq(bt_strswapcase(s5), "HEllOO");
+}
+
 Test(string_extra, strlstrip)
 {
 	char *result1 = bt_strlstrip("hello world");

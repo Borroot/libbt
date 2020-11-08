@@ -55,7 +55,7 @@ int      bt_stris(const char *, int (*)(char));
 //char    *bt_strtolower(char *);
 //char    *bt_strtotitle(char *);
 char    *bt_strtocapital(char *);
-//char    *bt_strswapcase(char *);
+char    *bt_strswapcase(char *);
 //char    *bt_strexpandtabs(char *);
 //char    *bt_strcenter(const char *, size_t);
 char    *bt_strstrip(const char *);
