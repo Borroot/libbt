@@ -22,6 +22,42 @@ Test(string_extra, stris)
 	cr_assert_not(bt_stris("hello", bt_isupper_char));
 }
 
+Test(string_extra, stristitle)
+{
+	cr_assert(bt_stristitle("Hello World"));
+	cr_assert(bt_stristitle(""));
+	cr_assert(bt_stristitle("Hello\tWorld"));
+	cr_assert(bt_stristitle("Hello\nWorld"));
+	cr_assert(bt_stristitle("Hello World\n"));
+	cr_assert(bt_stristitle("1hello World"));
+	cr_assert(bt_stristitle("1 2 3 H"));
+	cr_assert_not(bt_stristitle("HEllo World"));
+	cr_assert_not(bt_stristitle("hEllo World"));
+	cr_assert_not(bt_stristitle("Hello world"));
+	cr_assert_not(bt_stristitle("hello world"));
+	cr_assert_not(bt_stristitle("hELlo wOrLd"));
+	cr_assert_not(bt_stristitle("HelloWorld"));
+	cr_assert_not(bt_stristitle("1Hello World"));
+}
+
+Test(string_extra, strtotitle)
+{
+	char s1[] = "Hello World";
+	cr_assert_str_eq(bt_strtotitle(s1), "Hello World");
+	char s2[] = "HelloWorld";
+	cr_assert_str_eq(bt_strtotitle(s2), "Helloworld");
+	char s3[] = "1Hello World";
+	cr_assert_str_eq(bt_strtotitle(s3), "1hello World");
+	char s4[] = "hELlo worlD";
+	cr_assert_str_eq(bt_strtotitle(s4), "Hello World");
+	char s5[] = "1 2 3 h";
+	cr_assert_str_eq(bt_strtotitle(s5), "1 2 3 H");
+	char s6[] = "Hello\tWorld";
+	cr_assert_str_eq(bt_strtotitle(s6), "Hello\tWorld");
+	char s7[] = "";
+	cr_assert_str_eq(bt_strtotitle(s7), "");
+}
+
 Test(string_extra, strtoupper)
 {
 	char s[] = "hello";
@@ -42,25 +78,25 @@ Test(string_extra, strtolower)
 	cr_assert_str_eq(bt_strtolower(s), "3ello");
 }
 
-Test(string_extra, strtocapital)
+Test(string_extra, strcapital)
 {
 	char s1[] = "hello";
-	cr_assert_str_eq(bt_strtocapital(s1), "Hello");
+	cr_assert_str_eq(bt_strcapital(s1), "Hello");
 
 	char s2[] = "";
-	cr_assert_str_eq(bt_strtocapital(s2), "");
+	cr_assert_str_eq(bt_strcapital(s2), "");
 
 	char s3[] = "1hi";
-	cr_assert_str_eq(bt_strtocapital(s3), "1hi");
+	cr_assert_str_eq(bt_strcapital(s3), "1hi");
 
 	char s4[] = " hi";
-	cr_assert_str_eq(bt_strtocapital(s4), " hi");
+	cr_assert_str_eq(bt_strcapital(s4), " hi");
 
 	char s5[] = "\thi";
-	cr_assert_str_eq(bt_strtocapital(s5), "\thi");
+	cr_assert_str_eq(bt_strcapital(s5), "\thi");
 
 	char s6[] = "HI";
-	cr_assert_str_eq(bt_strtocapital(s6), "HI");
+	cr_assert_str_eq(bt_strcapital(s6), "HI");
 }
 
 Test(string_extra, strswapcase)
