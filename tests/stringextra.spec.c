@@ -108,6 +108,32 @@ Test(string_extra, strswapcase)
 	cr_assert_str_eq(bt_strswapcase(s5), "HEllOO");
 }
 
+Test(string_extra, expandtabs)
+{
+	char *r1 = bt_strexpandtabs("\t", 0);
+	cr_assert_str_eq(r1, "");
+	char *r2 = bt_strexpandtabs("\t", 1);
+	cr_assert_str_eq(r2, " ");
+	char *r3 = bt_strexpandtabs("\t", 15);
+	cr_assert_str_eq(r3, "               ");
+	char *r4 = bt_strexpandtabs("hello", 6);
+	cr_assert_str_eq(r4, "hello");
+	char *r5 = bt_strexpandtabs("hello\tworld", 4);
+	cr_assert_str_eq(r5, "hello    world");
+	char *r6 = bt_strexpandtabs("\ta\t\tb\t\t", 2);
+	cr_assert_str_eq(r6, "  a    b    ");
+	char *r7 = bt_strexpandtabs("\ta\tb\t\t", 0);
+	cr_assert_str_eq(r7, "ab");
+
+	free(r1);
+	free(r2);
+	free(r3);
+	free(r4);
+	free(r5);
+	free(r6);
+	free(r7);
+}
+
 Test(string_extra, strcenter)
 {
 	char *r1 = bt_strcenter("hello", 0);

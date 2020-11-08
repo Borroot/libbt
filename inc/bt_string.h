@@ -57,10 +57,11 @@ char    *bt_strtoupper(char *);
 char    *bt_strtolower(char *);
 char    *bt_strcapital(char *);
 char    *bt_strswapcase(char *);
-//char    *bt_strexpandtabs(char *);
+char    *bt_strexpandtabs(const char *, size_t);
 char    *bt_strcenter(const char *, size_t);
 char    *bt_strstrip(const char *);
 char    *bt_strlstrip(const char *);
 char    *bt_strrstrip(const char *);
+//void     bt_freeall(size_t, ...);
 
 #endif /* BT_STRING_H_ */
