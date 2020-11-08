@@ -3,12 +3,43 @@
 #include <bt_ctype.h>
 #include <bt_string.h>
 
+Test(string_extra, strfunc)
+{
+	char s[] = "hello";
+	cr_assert_str_eq(bt_strfunc(s, bt_toupper_chars), "HELLO");
+	cr_assert_str_eq(bt_strfunc(s, bt_tolower_chars), "hello");
+	s[3] = 'L';
+	cr_assert_str_eq(bt_strfunc(s, bt_tolower_chars), "hello");
+	s[3] = '1';
+	cr_assert_str_eq(bt_strfunc(s, bt_toupper_chars), "HEL1O");
+}
+
 Test(string_extra, stris)
 {
 	cr_assert(bt_stris("hello", bt_islower_char));
 	cr_assert(bt_stris("", bt_isupper_char));
 	cr_assert_not(bt_stris("hellO", bt_islower_char));
 	cr_assert_not(bt_stris("hello", bt_isupper_char));
+}
+
+Test(string_extra, strtoupper)
+{
+	char s[] = "hello";
+	cr_assert_str_eq(bt_strtoupper(s), "HELLO");
+	s[0] = 'h';
+	cr_assert_str_eq(bt_strtoupper(s), "HELLO");
+	s[0] = '3';
+	cr_assert_str_eq(bt_strtoupper(s), "3ELLO");
+}
+
+Test(string_extra, strtolower)
+{
+	char s[] = "HELLO";
+	cr_assert_str_eq(bt_strtolower(s), "hello");
+	s[0] = 'H';
+	cr_assert_str_eq(bt_strtolower(s), "hello");
+	s[0] = '3';
+	cr_assert_str_eq(bt_strtolower(s), "3ello");
 }
 
 Test(string_extra, strtocapital)

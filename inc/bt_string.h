@@ -49,10 +49,11 @@ char    *bt_strjoin(const char *, const char *);
 char   **bt_strsplit(const char *, char);
 
 /* String functions from other sources, mostly Python's standard library. */
+char    *bt_strfunc(char *, char (*)(char));
 int      bt_stris(const char *, int (*)(char));
 //int      bt_stristitle(const char *);
-//char    *bt_strtoupper(char *);
-//char    *bt_strtolower(char *);
+char    *bt_strtoupper(char *);
+char    *bt_strtolower(char *);
 //char    *bt_strtotitle(char *);
 char    *bt_strtocapital(char *);
 char    *bt_strswapcase(char *);
