@@ -7,7 +7,29 @@ Test(string_extra, stris)
 {
 	cr_assert(bt_stris("hello", bt_islower_char));
 	cr_assert(bt_stris("", bt_isupper_char));
+	cr_assert_not(bt_stris("hellO", bt_islower_char));
 	cr_assert_not(bt_stris("hello", bt_isupper_char));
+}
+
+Test(string_extra, strtocapital)
+{
+	char s1[] = "hello";
+	cr_assert_str_eq(bt_strtocapital(s1), "Hello");
+
+	char s2[] = "";
+	cr_assert_str_eq(bt_strtocapital(s2), "");
+
+	char s3[] = "1hi";
+	cr_assert_str_eq(bt_strtocapital(s3), "1hi");
+
+	char s4[] = " hi";
+	cr_assert_str_eq(bt_strtocapital(s4), " hi");
+
+	char s5[] = "\thi";
+	cr_assert_str_eq(bt_strtocapital(s5), "\thi");
+
+	char s6[] = "HI";
+	cr_assert_str_eq(bt_strtocapital(s6), "HI");
 }
 
 Test(string_extra, strlstrip)
